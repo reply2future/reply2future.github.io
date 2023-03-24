@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title></title>
+        <link>undefined</link>
+        <description>undefined</description>
+        <lastBuildDate>Fri, 24 Mar 2023 16:36:27 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Joplin Pages Publisher</generator>
+        <item>
+            <title><![CDATA[BFS vs DFS]]></title>
+            <guid>b07a2ee323804572bfaf7ae2efeb4bcf</guid>
+            <pubDate>Fri, 24 Mar 2023 16:01:46 GMT</pubDate>
+            <content:encoded><![CDATA[<h1 id="背景">背景</h1>
+<p>搜索算法的兩種思路，廣度優先(BFS)和深度優先(DFS)遍歷圖，都通過記錄已遍歷的節點避免圖中的環。</p>
+<h2 id="bfs">BFS</h2>
+<div><pre class="hljs"><code>visited := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[Pos]<span class="hljs-keyword">bool</span>)
+stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-comment">// 下一次要遍歷的節點，空的時候結束，每次將節點周圍的節點入列。</span></code></pre></div>
+<h2 id="dfs">DFS</h2>
+<div><pre class="hljs"><code>visited := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[Pos]<span class="hljs-keyword">bool</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">travel</span><span class="hljs-params">(node)</span></span> {
+    travel(node.children)
+}</code></pre></div>
+<p>通過遞歸的方式入棧子節點。</p>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[權限控制速覽]]></title>
+            <guid>0d4c39a3bf294cacacede00572ce5044</guid>
+            <pubDate>Fri, 24 Mar 2023 15:56:11 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="背景">背景</h2>
+<p><span style="color:#172b4d" class="jop-noMdConv">科普權限設計和原理。</span></p>
+<p><span style="color:#172b4d" class="jop-noMdConv">資源權限控制，涉及到幾個方面</span></p>
+<ol>
+<li>顆粒度</li>
+<li>控制邏輯</li>
+<li>組織架構</li>
+</ol>
+<h2 id="業內通用術語">業內通用術語</h2>
+<table>
+<thead>
+<tr>
+<th>術語</th>
+<th>全稱</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XACML</td>
+<td><strong>eXtensible Access Control Markup Language</strong></td>
+<td>定義了一種聲明性細粒度、基於屬性的訪問控制策略語言、架構和描述如何根據策略中定義的規則評估訪問請求的處理模型。<br class="jop-noMdConv" /><br class="jop-noMdConv" />XACML 的目標之一是促進多個供應商的訪問控制實現之間的通用術語和互操作性。<br class="jop-noMdConv" /><br class="jop-noMdConv" />XACML 主要是一種基於屬性的訪問控制系統 (ABAC)，也稱爲基於策略的訪問控制 (PBAC) 系統，其中與用戶或操作或資源相關聯的屬性（數據位）被輸入到決定是否給定用戶可以以特定方式訪問給定資源。<br class="jop-noMdConv" /><br class="jop-noMdConv" />基於角色的訪問控制(RBAC) 也可以在 XACML 中實現，作爲 ABAC 的特化</td>
+</tr>
+<tr>
+<td>ABAC</td>
+<td><strong>Attribute-based access control</strong><span style="color:#202122" class="jop-noMdConv"> </span></td>
+<td>訪問權限通過使用這些屬性結合在一起的政策，授予用戶。策略可以使用任何類型的屬性（用戶屬性、資源屬性、對象、環境屬性等）。此模型支持布爾邏輯，其中規則包含有關誰在發出請求、資源和操作的“IF, THEN”語句。</td>
+</tr>
+<tr>
+<td>PBAC</td>
+<td><strong>Policy-based access control</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>@cols=1:RBAC</td>
+<td>@cols=1:<strong>role-based access control</strong><span style="color:#202122" class="jop-noMdConv"> </span></td>
+<td>@cols=1:是一種限制授權用戶訪問系統的方法。它是一種實現強制訪問控制（MAC）或自由訪問控制（DAC）的方法，關鍵是角色和組來控制，其中組是用戶的集合而不是權限的集合；三大原則<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">最小權限原則</li><li class="jop-noMdConv"><span style="color:#555555" class="jop-noMdConv">責任分離原則</span></li><li class="jop-noMdConv"><span style="color:#555555" class="jop-noMdConv">數據抽象</span></li></ol></td>
+</tr>
+</tbody>
+</table>
+<h2 id="同類技術對比">同類技術對比</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>場景</th>
+<th>@cols=1:結構</th>
+<th>@cols=1:例子</th>
+<th>優勢</th>
+<th>劣勢</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABAC/PBAC</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">api和微服務安全</li><li class="jop-noMdConv">應用安全</li><li class="jop-noMdConv">數據庫安全</li><li class="jop-noMdConv">數據安全</li><li class="jop-noMdConv">大數據安全</li><li class="jop-noMdConv">文件服務安全</li></ol></td>
+<td>@cols=1:<ol class="jop-noMdConv"><li class="jop-noMdConv"><b class="jop-noMdConv">對象</b>：用戶 ID、用戶職位、部門、入職時間、是否通過試用期等等</li><li class="jop-noMdConv"><b class="jop-noMdConv">資源</b>：資源創建日期、資源最新更新時間、資源類型（文件、訂單詳情數據）、資源分類（訂單管理、文章管理等）等</li><li class="jop-noMdConv"><b class="jop-noMdConv">操作</b>：新增、查看、刪除等</li><li class="jop-noMdConv"><b class="jop-noMdConv">環境</b>：IP 地址、時間等</li></ol></td>
+<td>@cols=1:初級前端工程師（對象）可以下載（操作）內網中的（環境）GitLab 前端源代碼（資源）</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">靈活</li><li class="jop-noMdConv">顆粒度小</li><li class="jop-noMdConv">除了角色和組，還可以通過用戶，資源（部門，分類等），行動，上下文（時間，位置，ip等）</li></ol></td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">基於 XACML 實現的 ABAC 模型在執行 效率、語法結構等方面存在不足</li><li class="jop-noMdConv">策略制定麻煩</li><li class="jop-noMdConv">靈活帶來複雜性，比如用戶id配置權限會破壞原來角色策略，難以控制權限訪問</li></ol></td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>單系統或者應用如計算機用戶權限控制</td>
+<td>@cols=1:權限→角色→用戶</td>
+<td>@cols=1:<img src="https://www.notion.so/image/https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F97d6526b-5ad2-4dcc-9c22-e21f37773a87%2FRBAC_%25282%2529.svg%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3DAKIAT73L2G45EIPT3X45%252F20211205%252Fus-west-2%252Fs3%252Faws4_request%26X-Amz-Date%3D20211205T102845Z%26X-Amz-Expires%3D86400%26X-Amz-Signature%3D45a3d5586d34d6d165de558b7f70fb6f8f74c97dd21662a86ddec6049c97e5c0%26X-Amz-SignedHeaders%3Dhost%26x-id%3DGetObject?table=block&amp;id=0e598390-1ae3-4e47-ba1e-924c6e0bb6e6&amp;cache=v2" alt="notion image" /><br class="jop-noMdConv" /></td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">穩定：從管理角度出發，角色是爲了解決特定問題而被創造的，也就是解決分工問題，而用戶的變動幾率比系統裏的角色大多了，角色這一定義相對會更加穩定一些。</li><li class="jop-noMdConv">簡單：用戶與權限的邏輯分離，使得權限只和角色相關。而根據上文，角色是被相關干係人或行業直接創造出來的，以角色爲核心的權限管理體系的理解成本和學習成本相對於新造概念會少上很多，非常利於在內部推廣。</li></ol></td>
+<td>因爲權限控制都和角色有關，會遇到一下問題：<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">臨時需要新增權限就只能新增角色，可能導致角色爆炸膨脹，難以管理；</li><li class="jop-noMdConv">新增資源也可能需要更改大部分角色配置，難以管理</li></ol></td>
+</tr>
+</tbody>
+</table>
+<h2 id="授權框架">授權框架</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>OPA</th>
+<th>@cols=1:Casbin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>OPA</td>
+<td>@cols=1:Casbin</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>------</td>
+</tr>
+<tr>
+<td>定義</td>
+<td>策略引擎，有自己的語言Rego</td>
+<td>@cols=1:權限控制庫，支持RBAC，ABAC，ACL等多種模型</td>
+</tr>
+<tr>
+<td>架構特點</td>
+<td><img alt="integration.png" /><br class="jop-noMdConv" /></td>
+<td>@cols=1:<img alt="Casbin架構.png" /></td>
+</tr>
+<tr>
+<td>支持模型</td>
+<td>Access Control<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">RBAC</li><li class="jop-noMdConv">ABAC</li></ol>Envoy<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">jwt</li><li class="jop-noMdConv">url</li><li class="jop-noMdConv">roles</li></ol>Kubernetes<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">label</li><li class="jop-noMdConv">image safety</li><li class="jop-noMdConv">ingress conflicts</li></ol><a title="https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/" href="https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/">有案例</a><br class="jop-noMdConv" /><br class="jop-noMdConv" />代碼<a title="https://play.openpolicyagent.org/p/CMY8T79ZoB" href="https://play.openpolicyagent.org/p/CMY8T79ZoB">演練</a><br class="jop-noMdConv" /></td>
+<td>@cols=1:ACL<br class="jop-noMdConv" />ACL with superuser<br class="jop-noMdConv" />ACL without users<br class="jop-noMdConv" />ACL without resources<br class="jop-noMdConv" />RBAC<br class="jop-noMdConv" />RBAC with resource roles<br class="jop-noMdConv" />RBAC with domains/tenants<br class="jop-noMdConv" />ABAC<br class="jop-noMdConv" />RESTful<br class="jop-noMdConv" />Deny-override<br class="jop-noMdConv" />Allow-and-deny<br class="jop-noMdConv" />Priority<br class="jop-noMdConv" />Explicit Priority<br class="jop-noMdConv" />Subject-Priority<br class="jop-noMdConv" /><br class="jop-noMdConv" /><br class="jop-noMdConv" /><a title="https://casbin.org/en/editor/" href="https://casbin.org/en/editor/">案例和代碼演練</a></td>
+</tr>
+<tr>
+<td>@cols=1:在線演練</td>
+<td>@cols=1:<a title="https://casbin.org/en/editor/" href="https://casbin.org/en/editor/">https://casbin.org/en/editor/</a></td>
+<td>@cols=1:<a title="https://play.openpolicyagent.org/" href="https://play.openpolicyagent.org/">https://play.openpolicyagent.org/</a></td>
+</tr>
+<tr>
+<td>@cols=1:定義語法</td>
+<td>@cols=1:Rego，簡單</td>
+<td>@cols=1:config語法，簡單<br class="jop-noMdConv" /><br class="jop-noMdConv" /><img alt="Snipaste_2021-12-28_16-23-33.png" /></td>
+</tr>
+<tr>
+<td>@cols=1:接入形式</td>
+<td>@cols=1:服務或者庫</td>
+<td>@cols=1:庫</td>
+</tr>
+<tr>
+<td>@cols=1:支持接入語言</td>
+<td>@cols=1:主流語言</td>
+<td>@cols=1:主流語言</td>
+</tr>
+<tr>
+<td>@cols=1:策略讀取方式</td>
+<td>@cols=1:<span style="color:#ff0000" class="jop-noMdConv"><a title="https://www.openpolicyagent.org/docs/latest/management-bundles/#bundle-file-format" href="https://www.openpolicyagent.org/docs/latest/management-bundles/#bundle-file-format">bundle</a></span><br class="jop-noMdConv" /></td>
+<td>@cols=1:csv，數據庫等，主要看adapter的使用</td>
+</tr>
+<tr>
+<td>@cols=1:系統接入</td>
+<td>@cols=1:kubernetes，envoy，ceph，kafka等</td>
+<td>@cols=1:kubernetes，envoy</td>
+</tr>
+<tr>
+<td>@cols=1:IDE支持</td>
+<td>@cols=1:支持IDEA和vsc</td>
+<td>@cols=1:支持IDEA和vsc</td>
+</tr>
+<tr>
+<td>可維護性</td>
+<td>開源，golang編寫，6K stars，社羣活躍</td>
+<td>@cols=1:開源，golang編寫，11K stars，社羣活躍</td>
+</tr>
+<tr>
+<td>性能</td>
+<td></td>
+<td>@cols=1:<img alt="Snipaste_2021-12-28_18-36-35.png" /><br class="jop-noMdConv" /></td>
+</tr>
+<tr>
+<td>控制顆粒度</td>
+<td>可根據需要定義</td>
+<td>@cols=1:可根據需要定義</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>需要學習Rego語言，不過大概一個小時可以入門，上手快</td>
+<td>@cols=1:需要熟悉config配置語法，加上內置函數之類，一個小時入門，上手快</td>
+</tr>
+<tr>
+<td>@cols=1:接入istio難度</td>
+<td>@cols=1:根據<a title="https://www.openpolicyagent.org/docs/latest/envoy-tutorial-istio/" href="https://www.openpolicyagent.org/docs/latest/envoy-tutorial-istio/">官方教程</a>，設置邊車，然後通過添加標籤的形式接入，架構如下<br class="jop-noMdConv" /><img alt="envoy-ext-authz-flow.png" />特點：<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">通過標籤可以方便接入</li><li class="jop-noMdConv">標籤下的pod有一個opa邊車，避免單點故障，並且高性能，有緩存</li><li class="jop-noMdConv">可以通過設置bundle服務動態加載模型和數據</li></ol></td>
+<td>@cols=1:官方<a title="https://github.com/casbin/envoy-authz" href="https://github.com/casbin/envoy-authz">例子</a>已經對接好Envoy的ext_authz，只需要修改裏面的讀取token和用戶信息的方式，就能直接替換掉原本PDP服務；<br class="jop-noMdConv" /><br class="jop-noMdConv" />另外，文檔中提到的請求頭也不需要處理，因爲新版RequestAuthentication可以傳遞token過去；<br class="jop-noMdConv" /><br class="jop-noMdConv" />另外例子沒有詳細說明可以怎麼接，可以參照opa的模型，也可以單獨一個PDP服務</td>
+</tr>
+</tbody>
+</table>
+<br class="jop-noMdConv" />
+<br class="jop-noMdConv" />
+<h2 id="參考">參考</h2>
+<ol>
+<li><a title="https://en.wikipedia.org/wiki/XACML" href="https://en.wikipedia.org/wiki/XACML">XACML</a></li>
+<li><a title="https://en.wikipedia.org/wiki/Attribute-based_access_control" href="https://en.wikipedia.org/wiki/Attribute-based_access_control">ABAC</a></li>
+<li><a title="https://en.wikipedia.org/wiki/Role-based_access_control" href="https://en.wikipedia.org/wiki/Role-based_access_control">RBAC</a></li>
+<li><a title="https://jiayu0x.com/2014/12/23/Linux-authority-and-access-control/" href="https://jiayu0x.com/2014/12/23/Linux-authority-and-access-control/">Linux 權限管理與訪問控制詳解(1)——基本概念和 DAC</a></li>
+<li><a title="http://xn--%20rbac%20%20abac%20-g045ab7dkxe36u00smz8ipn7bm57a15txg1bcmzfr0am56w/" href="http://xn--%20rbac%20%20abac%20-g045ab7dkxe36u00smz8ipn7bm57a15txg1bcmzfr0am56w/">關於 RBAC 和 ABAC 兩種權限設計的優缺點</a></li>
+<li><a title="http://xn--%20abac%20-2u5p059t4zvbkzzf/" href="http://xn--%20abac%20-2u5p059t4zvbkzzf/">使用 ABAC 鑑權</a></li>
+</ol>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[envoy速覽]]></title>
+            <guid>a153270c69804329aa9f11aa949ffc4b</guid>
+            <pubDate>Fri, 24 Mar 2023 15:51:42 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="組織架構">組織架構</h2>
+<ol>
+<li>Listeners:：它們定義了 Envoy 代理如何接受傳入的請求。目前，Envoy Proxy 僅支持基於 TCP 的偵聽器。建立連接後，將其傳遞給一組過濾器進行處理</li>
+<li>Filters：它們是可以處理入站和出站數據的管道架構的一部分。此功能啓用過濾器，例如 Gzip，可在將數據發送到客戶端之前對其進行壓縮</li>
+<li>Routers：這些將流量轉發到所需的目的地（集羣）。</li>
+<li>Clusters：它們定義流量的目標端點和配置設置。</li>
+</ol>
+<h2 id="特點">特點</h2>
+<ol>
+<li>每個工作線程運行一個非阻塞事件循環</li>
+<li>轉發日誌爲stdout和stderr</li>
+<li>通過docker配置低權限用戶</li>
+<li>xDS 配置(discovery service)
+<ul>
+<li>eds, cds, lds</li>
+<li>file-based，RESTful-api，gRPC</li>
+</ul>
+</li>
+<li>灰度測試 weight</li>
+<li>方便集成監控(<a title="https://www.jaegertracing.io/" href="https://www.jaegertracing.io/">Jaeger</a>)和指標(<a title="https://prometheus.io/" href="https://prometheus.io/">Prometheus</a>)</li>
+</ol>
+<h2 id="簡單樣例">簡單樣例</h2>
+<div><pre class="hljs"><code><span class="hljs-attr">static_resources:</span>
+  <span class="hljs-attr">listeners:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">listener_0</span>
+    <span class="hljs-attr">address:</span>
+      <span class="hljs-attr">socket_address:</span> { <span class="hljs-attr">address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>, <span class="hljs-attr">port_value:</span> <span class="hljs-number">10000</span> }
+ 
+    <span class="hljs-attr">filter_chains:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">filters:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">envoy.http_connection_manager</span>
+        <span class="hljs-attr">config:</span>
+          <span class="hljs-attr">stat_prefix:</span> <span class="hljs-string">ingress_http</span>
+          <span class="hljs-attr">route_config:</span>
+            <span class="hljs-attr">name:</span> <span class="hljs-string">local_route</span>
+            <span class="hljs-attr">virtual_hosts:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">local_service</span>
+              <span class="hljs-attr">domains:</span> [<span class="hljs-string">"*"</span>]
+              <span class="hljs-attr">routes:</span>
+              <span class="hljs-bullet">-</span> <span class="hljs-attr">match:</span> { <span class="hljs-attr">prefix:</span> <span class="hljs-string">"/"</span> }
+                <span class="hljs-attr">route:</span> { <span class="hljs-attr">host_rewrite:</span> <span class="hljs-string">www.google.com</span>, <span class="hljs-attr">cluster:</span> <span class="hljs-string">service_google</span> }
+          <span class="hljs-attr">http_filters:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">envoy.router</span>
+ 
+  <span class="hljs-attr">clusters:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">service_google</span>
+    <span class="hljs-attr">connect_timeout:</span> <span class="hljs-number">0.</span><span class="hljs-string">25s</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">LOGICAL_DNS</span>
+    <span class="hljs-attr">dns_lookup_family:</span> <span class="hljs-string">V4_ONLY</span>
+    <span class="hljs-attr">lb_policy:</span> <span class="hljs-string">ROUND_ROBIN</span>
+    <span class="hljs-attr">hosts:</span> [{ <span class="hljs-attr">socket_address:</span> { <span class="hljs-attr">address:</span> <span class="hljs-string">google.com</span>, <span class="hljs-attr">port_value:</span> <span class="hljs-number">443</span> }}]
+    <span class="hljs-attr">tls_context:</span> { <span class="hljs-attr">sni:</span> <span class="hljs-string">www.google.com</span> }
+ 
+<span class="hljs-attr">admin:</span>
+  <span class="hljs-attr">access_log_path:</span> <span class="hljs-string">/tmp/admin_access.log</span>
+  <span class="hljs-attr">address:</span>
+    <span class="hljs-attr">socket_address:</span> { <span class="hljs-attr">address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>, <span class="hljs-attr">port_value:</span> <span class="hljs-number">9901</span> }</code></pre></div>
+<h2 id="參考">參考</h2>
+<p><a title="https://www.envoyproxy.io/try/getting-started" href="https://www.envoyproxy.io/try/getting-started">envoy官方教程</a></p>
+]]></content:encoded>
+        </item>
+    </channel>
+</rss>
