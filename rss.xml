@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Fri, 24 Mar 2023 16:36:27 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 24 Mar 2023 16:45:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -273,6 +273,80 @@ stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-commen
     <span class="hljs-attr">socket_address:</span> { <span class="hljs-attr">address:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>, <span class="hljs-attr">port_value:</span> <span class="hljs-number">9901</span> }</code></pre></div>
 <h2 id="參考">參考</h2>
 <p><a title="https://www.envoyproxy.io/try/getting-started" href="https://www.envoyproxy.io/try/getting-started">envoy官方教程</a></p>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[異常處理]]></title>
+            <guid>cc1f422794884d03a0faccf4a2d2dff8</guid>
+            <pubDate>Fri, 24 Mar 2023 15:41:49 GMT</pubDate>
+            <content:encoded><![CDATA[<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>情況</th>
+<th>異常信息</th>
+<th>處理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業務異常</td>
+<td>1. 操作非法<br class="jop-noMdConv" />2. 參數不符<br class="jop-noMdConv" />3. 權限非法<br class="jop-noMdConv" />4. 資源不存在</td>
+<td>給用戶準確信息，比如密碼錯誤</td>
+<td>用戶處理或者打印簡單日誌</td>
+</tr>
+<tr>
+<td>系統/程序異常</td>
+<td>1. 網絡異常<br class="jop-noMdConv" />2. 服務間調用異常<br class="jop-noMdConv" />3. 數據庫異常<br class="jop-noMdConv" />4. 緩存異常<br class="jop-noMdConv" />5. 內存溢出</td>
+<td>給開發者具體異常信息，比如數據庫連接失敗原因</td>
+<td>重試，聯繫開發者或者記錄詳細堆棧</td>
+</tr>
+</tbody>
+</table>
+<h2 id="原則">原則</h2>
+<ol>
+<li>只在必要使用異常的地方纔使用異常，不要用異常去控制程序的流程。慎地使用異常，異常捕獲的代價非常高昂，異常使用過多會嚴重影響程序的性能（java）。</li>
+<li>切忌使用空catch塊。千萬不要使用空的catch塊，空的catch塊意味着你在程序中隱藏了錯誤和異常，並且很可能導致程序出現不可控的執行結果。如果你非常肯定捕獲到的異常不會以任何方式對程序造成影響，最好用Log日誌將該異常進行記錄，以便日後方便更新和維護。</li>
+<li>異常信息放到一個單獨的文件中</li>
+<li>在finally中釋放資源</li>
+<li>如果客戶端可以從異常中採取行動進行恢復的，就使用checked exception，如果客戶什麼也做不了，就用unchecked exception。我指的是，不僅僅是記錄異常，還要採取措施來恢復。</li>
+<li>如果自定義的異常沒有提供有用的信息的話，請不要創建它們。儘量使用編程語言定義好的異常類，而非我們自己創建的異常類。它們使我們的代碼易讀，也避免代碼消耗更多內存。</li>
+<li>如果你將一個異常包裝成另一種異常時，構造一個新異常要傳遞源異常。</li>
+<li>日誌中記錄詳細的異常信息。</li>
+<li>記錄異常，僅記錄一次</li>
+</ol>
+<h2 id="node中異常類型">node中異常類型</h2>
+<ol>
+<li>同步異常</li>
+</ol>
+<div><pre class="hljs"><code><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">'test'</span>)
+} <span class="hljs-keyword">catch</span> (e) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(e)
+}</code></pre></div>
+<ol start="2">
+<li>異步異常</li>
+</ol>
+<div><pre class="hljs"><code><span class="hljs-comment">// promise</span>
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">asyncWork</span>()
+} <span class="hljs-keyword">catch</span> (e) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(e)
+}
+<span class="hljs-comment">// event</span>
+<span class="hljs-keyword">const</span> s = fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">'path/of/file'</span>)
+s.<span class="hljs-title function_">on</span>(<span class="hljs-string">'error'</span>, <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(e))</code></pre></div>
+<h3 id="node-verror">node-verror</h3>
+<p>這個<a title="https://github.com/joyent/node-verror" href="https://github.com/joyent/node-verror">repo</a> 可支持構建error chain和添加額外信息</p>
+<h2 id="參考">參考</h2>
+<ol>
+<li><a title="https://www.cnblogs.com/Jtianlin/p/4604178.html" href="https://www.cnblogs.com/Jtianlin/p/4604178.html">異常處理最佳實戰</a></li>
+<li><a title="https://blog.51cto.com/winters1224/2493466" href="https://blog.51cto.com/winters1224/2493466">系統中的業務異常</a></li>
+<li><a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements">Exception handling statements</a></li>
+<li><a title="https://www.toptal.com/nodejs/node-js-error-handling" href="https://www.toptal.com/nodejs/node-js-error-handling">How to Build a Node.js Error-handling System</a></li>
+<li><a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error MDN說明</a></li>
+<li><a title="https://www.joyent.com/node-js/production/design/errors" href="https://www.joyent.com/node-js/production/design/errors">Error Handling in Node.js</a></li>
+</ol>
 ]]></content:encoded>
         </item>
     </channel>
