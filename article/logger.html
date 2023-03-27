@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="/_assets/main.css" />
+
+    <title>Logger的總結 - Reply2Future</title>
+  </head>
+  <body>
+    <div class="main">
+      <nav class="navigation">
+        <a href="/">Reply2Future</a>
+      </nav>
+      <article>
+        <header>
+          <h1 class="article-title">Logger的總結</h1>
+          <div class="article-info">
+            <div>
+              <span
+                >Created At：<time datetime="1679673423874"
+                  >2023-03-24 23:57</time
+                ></span
+              >
+              <span
+                >Updated At：<time datetime="1679673429979"
+                  >2023-03-24 23:57</time
+                ></span
+              >
+            </div>
+            
+          </div>
+        </header>
+        <div class="article-content markdown-body"><h2 id="背景">背景</h2>
+<p><span style="color:#172b4d" class="jop-noMdConv">日誌重要性不言而喻：</span></p>
+<ol>
+<li>快速定位和重現問題</li>
+<li>發現服務瓶頸(服務耗時，當然這一部分也可以通過其他無入侵式監控方式實現)</li>
+</ol>
+<h2 id="日誌分類">日誌分類</h2>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>說明</th>
+<th>@cols=1:一般面向人員</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>診斷日誌</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">函數調用入參和出參</li><li class="jop-noMdConv">外部服務調用</li><li class="jop-noMdConv">捕獲異常信息</li><li class="jop-noMdConv">關鍵中間變量變化</li><li class="jop-noMdConv">加載配置</li><li class="jop-noMdConv">操作定時服務</li></ol></td>
+<td>@cols=1:服務開發者</td>
+</tr>
+<tr>
+<td>統計日誌</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">請求耗時</li><li class="jop-noMdConv">請求頭標識信息</li><li class="jop-noMdConv">請求時間</li><li class="jop-noMdConv">資源信息(cpu和memory佔用)</li></ol></td>
+<td>@cols=1:運維</td>
+</tr>
+</tbody>
+</table>
+<h2 id="日誌內容">日誌內容</h2>
+<h3 id="原則">原則</h3>
+<p>目前只針對<code>診斷日誌</code>做說明</p>
+<table>
+<thead>
+<tr>
+<th>原則</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>開始輸入參數</td>
+<td>方便重現問題</td>
+</tr>
+<tr>
+<td>結束輸出參數</td>
+<td>判斷是否符合預期</td>
+</tr>
+<tr>
+<td>中間關鍵變量變化</td>
+<td>儘量保證一個函數一個職責，減少中間變量</td>
+</tr>
+<tr>
+<td>不可達代碼打印記錄</td>
+<td>方便查找bug</td>
+</tr>
+<tr>
+<td>@cols=1:避免打印日誌引入異常</td>
+<td>@cols=1:比如: null引用，一般框架會自帶處理</td>
+</tr>
+<tr>
+<td>@cols=1:lazy logging</td>
+<td>@cols=1:對於不需要輸出的日誌(DEBUG)所做的操作，避免性能損耗，比如說字符串拼接</td>
+</tr>
+<tr>
+<td>@cols=1:設置【<a title="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578#:~:text=%E6%97%A5%E5%BF%97%E7%9A%84%E7%BA%A7%E5%88%AB,%E6%97%A5%E5%BF%97%E6%9D%A5%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98" href="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578#:~:text=%E6%97%A5%E5%BF%97%E7%9A%84%E7%BA%A7%E5%88%AB,%E6%97%A5%E5%BF%97%E6%9D%A5%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98">日誌等級</a>】</td>
+<td>@cols=1:生產環境關閉debug日誌，避免浪費磁盤和大量日誌干擾問題的定位</td>
+</tr>
+<tr>
+<td>@cols=1:不要打印敏感信息</td>
+<td>@cols=1:用戶密碼，key之類的</td>
+</tr>
+<tr>
+<td>@cols=1:打印捕獲異常日誌</td>
+<td>@cols=1:方便知道異常信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="格式">格式</h3>
+<p><code>【時間】,【 等級】, 【traceId/clusterId】,【module/function】 【action】, 【changed value/arguments】</code> (5W1H)</p>
+<h2 id="參考">參考</h2>
+<ol>
+<li><a title="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578" href="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578">3.服務日誌規範文檔</a>  !!! 強力推薦 !!!</li>
+<li><a title="https://www.cntofu.com/book/78/p3c-gitbook/%E5%BC%82%E5%B8%B8%E6%97%A5%E5%BF%97/%E6%97%A5%E5%BF%97%E8%A7%84%E7%BA%A6.md" href="https://www.cntofu.com/book/78/p3c-gitbook/%E5%BC%82%E5%B8%B8%E6%97%A5%E5%BF%97/%E6%97%A5%E5%BF%97%E8%A7%84%E7%BA%A6.md">阿里巴巴Java開發手冊-日誌規約</a></li>
+<li><a title="https://www.scalyr.com/blog/the-10-commandments-of-logging/" href="https://www.scalyr.com/blog/the-10-commandments-of-logging/">LOGGING BEST PRACTICES: THE 13 YOU SHOULD KNOW</a></li>
+</ol>
+</div>
+      </article>
+    </div>
+  </body>
+</html>
