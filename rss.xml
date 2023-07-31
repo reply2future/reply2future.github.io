@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Thu, 20 Jul 2023 16:02:40 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 31 Jul 2023 08:32:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -135,7 +135,7 @@ stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-commen
 <tbody>
 <tr>
 <td>圖片</td>
-<td>- 地理位置<br class="jop-noMdConv" />- 拍攝時間</td>
+<td>- 地理位置<br class="jop-noMdConv" />- 拍攝時間<br class="jop-noMdConv" />- <a title="https://ixyzero.com/blog/archives/5418.html" href="https://ixyzero.com/blog/archives/5418.html">盲水印</a></td>
 <td><a title="https://exif.tuchong.com/" href="https://exif.tuchong.com/">exif</a></td>
 <td>使用工具刪除相關信息，比如：<a title="https://exiftool.org/" href="https://exiftool.org/">ExifTool</a></td>
 </tr>
