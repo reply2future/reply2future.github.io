@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Sun, 24 Mar 2024 12:55:59 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 24 Mar 2024 13:54:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -218,6 +218,56 @@ stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-commen
     travel(node.children)
 }</code></pre></div>
 <p>通過遞歸的方式入棧子節點。</p>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[golang append修改原數組情況]]></title>
+            <guid>fa1fefd697894f3d86e4e9e7672d8e5b</guid>
+            <pubDate>Fri, 24 Mar 2023 16:00:02 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="背景">背景</h2>
+<p><a title="https://go.dev/play/p/h751UX98ow4" href="https://go.dev/play/p/h751UX98ow4">示例代碼</a></p>
+<div><pre class="hljs"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    a := []<span class="hljs-keyword">int</span>{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>}
+    a2 := <span class="hljs-built_in">append</span>(a[:<span class="hljs-number">2</span>], a[<span class="hljs-number">3</span>:]...)
+    fmt.Println(a2)
+    fmt.Println(a)
+    fmt.Println(&amp;a2[<span class="hljs-number">0</span>] == &amp;a[<span class="hljs-number">0</span>])
+    a[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>
+    fmt.Println(a2)
+    fmt.Println(a)
+    fmt.Println(<span class="hljs-string">"-------------"</span>)
+    b := []<span class="hljs-keyword">int</span>{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>}
+    b2 := <span class="hljs-built_in">append</span>(b[:<span class="hljs-number">2</span>], []<span class="hljs-keyword">int</span>{<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>}...)
+    fmt.Println(b2)
+    fmt.Println(b)
+    fmt.Println(&amp;b2[<span class="hljs-number">0</span>] == &amp;b[<span class="hljs-number">0</span>])
+    b[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>
+    fmt.Println(b2)
+    fmt.Println(b)
+}</code></pre></div>
+<p>輸出結果：</p>
+<div><pre class="hljs"><code>[1 2 4 5 6 7]
+[1 2 4 5 6 7 7]
+true
+[-1 2 4 5 6 7]
+[-1 2 4 5 6 7 7]
+-------------
+[1 2 5 6 7 8 9 10]
+[1 2 3 4]
+false
+[1 2 5 6 7 8 9 10]
+[-1 2 3 4]</code></pre></div>
+<h2 id="解釋">解釋</h2>
+<p><code>a[0:2]</code>長度為2, <code>a[3:]</code>長度為4，原本的數組a長度為7,不需要擴展生成新數組( <a title="https://pkg.go.dev/builtin#append" href="https://pkg.go.dev/builtin#append">api說明</a> ）</p>
+<blockquote>
+<p>append 內置函數將元素附加到切片的末尾。如果它有足夠的容量，則重新劃分目標以容納新元素。如果沒有，將分配一個新的底層數組。 Append 返回更新後的切片。因此有必要將 append 的結果存儲在保存切片本身的變量中：</p>
+</blockquote>
+<p>所以，就在原來的數組a上面做修改。</p>
+<p>而b的情況相反，新數組長度為6，大於b的長度4，擴展了數組，生成新的數組。</p>
 ]]></content:encoded>
         </item>
         <item>
