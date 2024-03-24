@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" href="/_assets/main.css" />
+
+    <title>請一個提摩隊長--少數派個人數據監控 - Reply2Future</title>
+  <link rel="stylesheet" href="/_markdown_plugin_assets/highlight.js/atom-one-light.css" /></head>
+  <body>
+    <div class="main">
+      <nav class="navigation">
+        <a href="/">Reply2Future</a>
+      </nav>
+      <article>
+        <header>
+          <h1 class="article-title">請一個提摩隊長--少數派個人數據監控</h1>
+          <div class="article-info">
+            <div>
+              <span
+                >Created At：<time datetime="1705538964372"
+                  >2024-01-18 08:49</time
+                ></span
+              >
+              <span
+                >Updated At：<time datetime="1707018664173"
+                  >2024-02-04 11:51</time
+                ></span
+              >
+            </div>
+            
+            <div>
+              Keywords: 
+              <span class="keyword">monitor</span>
+              
+              <span class="keyword">self-hosted</span>
+              
+              <span class="keyword">grafana</span>
+              
+              <span class="keyword">prometheus</span>
+              
+            </div>
+            
+          </div>
+        </header>
+        <div class="article-content markdown-body"><h2 id="背景">背景</h2>
+<p>數據非常的重要，歷史數據可以今我們分析目前的狀況，為之後的決策指明了方向，而實時數據則可以幫助我們在一些場景中獲得先機，譬如：監察購物降價通知。而我最近有個需求是想看看我的一些少數派文章的閱讀數，評論數和充電數，在一個地方就能看到數據，可以分析那個時段最多views，什麼類型的文章最符合大眾口味，所以就有了這篇文章。</p>
+<h2 id="成果展示">成果展示</h2>
+<p><img src="/_resources/f98891eff0db46d4aae78b25d9cc79cf.png" /><br />
+圖示說明：</p>
+<ol>
+<li>views, likes和comments時間折線圖：可以看到什麼時候閱讀量變化最大</li>
+<li>views和likes的堆疊柱狀圖：什麼題材更受觀眾歡迎</li>
+<li>文章各項之最排行榜：同2的作用，但可以從views, likes和comments的面向看觀眾的喜好</li>
+</ol>
+<h2 id="前期工作">前期工作</h2>
+<h3 id="如何獲取少數派數據">如何獲取少數派數據</h3>
+<p>打開少數派的用戶頁面，<code>F12</code>開發者工具查看我的<a title="https://sspai.com/u/kissdev/posts" href="https://sspai.com/u/kissdev/posts">個人主頁</a>，這個接口返回的數據就不正確都是0，應該是服務器沒有填充數據到模型。<br />
+<img src="/_resources/8bf7706644d840e48aafa3540a450f9d.png" /><br />
+但是在個人<code>文章管理</code>頁面的接口是可以返回正確的數據，如下圖所示：<br />
+<img src="/_resources/afdfe28038514303bf0a03735698d59d.png" /><br />
+再查看一下相關的請求是只要帶<a title="https://en.wikipedia.org/wiki/JSON_Web_Token" href="https://en.wikipedia.org/wiki/JSON_Web_Token">JSON Web Token</a>就可以了，然後查看了<code>token</code>的過期時間是一年，又因為登入是有驗證機制，自動化成本就變高了，以最簡單來實現就是拿登入之後的<code>token</code>來直接請求，設置一個提醒，到時過期再手動更換。源碼地址 <a title="https://github.com/reply2future/sspai-prometheus-metrics" href="https://github.com/reply2future/sspai-prometheus-metrics">在此</a></p>
+<h2 id="工作流">工作流</h2>
+<p>根據上個章節的說明，可得出如下圖所示：<br />
+創建一個<code>sspai-exporter</code>的<a title="https://github.com/reply2future/sspai-prometheus-metrics" href="https://github.com/reply2future/sspai-prometheus-metrics">容器服務</a>，該工具定時地通過api抓取用戶的後台數據，由<a title="https://prometheus.io/" href="https://prometheus.io/">prometheus</a>定時拉取，然後將數據展示到我的<a title="https://grafana.com/docs/grafana/latest/" href="https://grafana.com/docs/grafana/latest/">grafana</a>中，可以以圖表的方式看到歷史數據的變化，並且在一些數據添加alert條件，譬如在文章達到一千次views的時候，發送通知我，但alertmanger沒有滿足我的要求，因為涉及到狀態的存儲，暫時先不管這部分需求，之後再想着怎麼處理。<br />
+<img src="/_resources/b52282561030425a8d459224b2e8bda5.png" /></p>
+<h2 id="目標受眾">目標受眾</h2>
+<ol>
+<li>docker使用經驗</li>
+<li>yaml文件編寫經驗</li>
+<li>grafana + prometheus</li>
+</ol>
+<h2 id="部署">部署</h2>
+<h3 id="monitor套件">monitor套件</h3>
+<p>在你的服務器，NAS或本地電腦，建一個文件夾來存放相關配置文件<code>docker-compose.yaml</code>和<code>prometheus.yaml</code>。</p>
+<h4 id="docker-composeyaml">docker-compose.yaml</h4>
+<p>其中<code>docker-compose.yaml</code>定義了各種服務的配署，內容如下：</p>
+<div><pre class="hljs"><code><span class="hljs-attr">version:</span> <span class="hljs-string">'3'</span>
+
+<span class="hljs-comment"># 可重用的log配置</span>
+<span class="hljs-attr">x-common-log-conf:</span> <span class="hljs-meta">&amp;common_log_conf</span>
+  <span class="hljs-attr">logging:</span>
+    <span class="hljs-attr">driver:</span> <span class="hljs-string">json-file</span>
+    <span class="hljs-attr">options:</span>
+      <span class="hljs-attr">max-size:</span> <span class="hljs-string">10m</span>
+      <span class="hljs-attr">max-file:</span> <span class="hljs-number">3</span>
+
+<span class="hljs-attr">services:</span>
+  <span class="hljs-attr">prometheus:</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">prometheus</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">prom/prometheus:latest</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">prometheus_data:/prometheus</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">./prometheus.yaml:/etc/prometheus/prometheus.yml</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"9090:9090"</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span>
+    <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*common_log_conf</span>
+  <span class="hljs-attr">grafana:</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">grafana</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">grafana/grafana-oss:latest</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">grafana_data:/var/lib/grafana</span>
+    <span class="hljs-attr">depends_on:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">prometheus</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"3000:3000"</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span>
+    <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*common_log_conf</span>
+  <span class="hljs-attr">alertmanager:</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">alertmanager</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">prom/alertmanager:latest</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"9093:9093"</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span>
+    <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*common_log_conf</span>
+  <span class="hljs-attr">sspai-exporter:</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">sspai-exporter</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">feimeizhan/sspai-prometheus-metrics:latest</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-comment"># 用自己的token替換下面的值`${SSPAI_TOKEN}` </span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">SSPAI_TOKEN=${SSPAI_TOKEN}</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"4000:3000"</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">unless-stopped</span>
+    <span class="hljs-string">&lt;&lt;:</span> <span class="hljs-meta">*common_log_conf</span>
+
+<span class="hljs-attr">volumes:</span>
+  <span class="hljs-attr">prometheus_data:</span>
+  <span class="hljs-attr">grafana_data:</span></code></pre></div>
+<p>其中，<code>sspai-exporter</code>是上文提到的需要填寫自己的<code>JWT</code>即可。可以訪問一下<code>http://localhost:4000/metrics</code>查看最後是否有相應內容，看看是否抓取成功<br />
+<img src="/_resources/26989aaaaf27492f8168890df3ea075a.png" /></p>
+<h4 id="prometheusyaml">prometheus.yaml</h4>
+<p><code>prometheus.yaml</code>是prometheus的配置文件，可以用來配置拉取<code>sspai-exporter</code>的數據，具體內容如下，更多配置可參考<a title="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config" href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config">官方文檔</a>，其中需要注意的是，主動拉取的頻率不能太高，否則就會變成攻擊服務器了，控制的參數是<code>scrape_interval</code>，目前設置的是30分鐘拉取一次，測試的時候可以改成<code>5s</code>。</p>
+<div><pre class="hljs"><code><span class="hljs-comment"># my global config</span>
+<span class="hljs-attr">global:</span>
+  <span class="hljs-comment"># scrape_interval: 1m # Set the scrape interval to every 15 seconds. Default is every 1 minute.</span>
+  <span class="hljs-comment"># evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.</span>
+  <span class="hljs-comment"># scrape_timeout is set to the global default (10s).</span>
+
+<span class="hljs-comment"># Alertmanager configuration</span>
+<span class="hljs-attr">alerting:</span>
+  <span class="hljs-attr">alertmanagers:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">static_configs:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">alertmanager:9093</span>
+
+<span class="hljs-comment"># Load rules once and periodically evaluate them according to the global 'evaluation_interval'.</span>
+<span class="hljs-attr">rule_files:</span>
+  <span class="hljs-comment"># - "first_rules.yml"</span>
+  <span class="hljs-comment"># - "second_rules.yml"</span>
+
+<span class="hljs-comment"># A scrape configuration containing exactly one endpoint to scrape:</span>
+<span class="hljs-comment"># Here it's Prometheus itself.</span>
+<span class="hljs-attr">scrape_configs:</span>
+  <span class="hljs-comment"># The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">"prometheus"</span>
+
+    <span class="hljs-comment"># metrics_path defaults to '/metrics'</span>
+    <span class="hljs-comment"># scheme defaults to 'http'.</span>
+
+    <span class="hljs-attr">static_configs:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span> [<span class="hljs-string">"localhost:9090"</span>]
+
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">job_name:</span> <span class="hljs-string">sspai-info</span>
+    <span class="hljs-attr">scrape_interval:</span> <span class="hljs-string">30m</span>
+    <span class="hljs-attr">static_configs:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">targets:</span> [<span class="hljs-string">'sspai-exporter:3000'</span>]</code></pre></div>
+<p>另外，如果修改了該配置文件之後要馬上生效，可以用這個方法：<code>curl -X POST localhost:9090/-/reload</code></p>
+<h3 id="運行">運行</h3>
+<p>配置完成之後，在該文件下使用命令<code>docker-compose up -d</code>。</p>
+<h3 id="配置grafana-dashboard">配置grafana dashboard</h3>
+<p>打開剛部署成功的grafana管理後台，<code>http://localhost:3000</code>，然後導入我配置好的dashboard JSON，即可見到開篇所說的效果<br />
+<img src="/_resources/11af36ba09954110b2eccd04e2dc2c56.png" /></p>
+<p><a type="application/json" href="/_resources/ccba005dfb6c4157a74bc9259bcc803a.json">Dashboards data.json</a></p>
+<p>如果是沒有數據的話，很可能是設署拉取的時間太長，可以將<code>scrape_interval</code>改成<code>5s</code>，上面的章節也有提及。</p>
+<h2 id="結語">結語</h2>
+<p>其實本身的需求很簡單，根本都不需要用到<code>prometheus</code>這一套這麼重的工具，本來用<code>TSDB</code>和<code>Chart.js</code>就能搞好的，不過因為本身我自己的家用服務器就有了這一套工具，使用<code>docker</code>部署也最級方便，就有了這一篇文章了。</p>
+<h2 id="參考">參考</h2>
+<ol>
+<li><a title="https://grafana.com/docs/grafana/latest/datasources/prometheus/query-editor/#legend" href="https://grafana.com/docs/grafana/latest/datasources/prometheus/query-editor/#legend">how to change legend</a></li>
+<li><a title="https://k21academy.com/docker-kubernetes/prometheus-grafana-monitoring/" href="https://k21academy.com/docker-kubernetes/prometheus-grafana-monitoring/">Install Prometheus and Grafana on Kubernetes using Helm</a></li>
+<li><a title="https://prometheus.io/docs/introduction/overview/" href="https://prometheus.io/docs/introduction/overview/">prometheus overview</a></li>
+<li>為什麼使用類型<code>gauge</code> 而不使用<code>counter</code> -&gt; 因為可能like也可能取消；簡單為主 <a title="https://prometheus.io/docs/concepts/metric_types/" href="https://prometheus.io/docs/concepts/metric_types/">metrics type</a></li>
+<li><a title="https://k21academy.com/wp-content/uploads/2021/06/Prometheus-Server_Chart.png" href="https://k21academy.com/wp-content/uploads/2021/06/Prometheus-Server_Chart.png">prometheus架構圖</a></li>
+</ol>
+</div>
+      </article>
+    </div>
+  </body>
+</html>
