@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Sun, 24 Mar 2024 12:46:38 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 24 Mar 2024 12:55:59 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -788,6 +788,105 @@ s.<span class="hljs-title function_">on</span>(<span class="hljs-string">'error'
 <li><a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error MDN說明</a></li>
 <li><a title="https://www.joyent.com/node-js/production/design/errors" href="https://www.joyent.com/node-js/production/design/errors">Error Handling in Node.js</a></li>
 </ol>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[DevOps工具鏈]]></title>
+            <guid>514d544afb294f6aaf390efd3e085446</guid>
+            <pubDate>Fri, 24 Mar 2023 15:36:17 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="工具鏈">工具鏈</h2>
+<p><img alt="devops-artikel-1-foto-1.jpeg" /></p>
+<h2 id="plan">Plan</h2>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>說明</th>
+<th>開源</th>
+<th>優勢</th>
+<th>劣勢</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>禪道</td>
+<td>集需求開發項目管理一身</td>
+<td>是</td>
+<td>開源版本適合中小型企業</td>
+<td>欠缺新手引導</td>
+</tr>
+<tr>
+<td>redmine</td>
+<td>靈活的項目管理軟件</td>
+<td>是</td>
+<td>老牌項目管理軟件</td>
+<td>界面簡陋，欠缺新手引導</td>
+</tr>
+<tr>
+<td>jira</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>github</td>
+<td>最流行的託管平臺</td>
+<td>否</td>
+<td>最流行功能齊全</td>
+<td>國內訪問慢，針對代碼</td>
+</tr>
+<tr>
+<td>gitlab</td>
+<td>類似github</td>
+<td>是</td>
+<td>功能接近gitlab，可自行部署</td>
+<td>欠缺項目管理能力</td>
+</tr>
+</tbody>
+</table>
+<h2 id="code">Code</h2>
+<ol>
+<li>版本管理工具: git, svn</li>
+<li>代碼託管平臺: gitlab, github</li>
+<li>IDE: IDEA, vscode</li>
+<li>語言: JavaScript, TypeScript</li>
+<li>代碼規範: Standard.js</li>
+</ol>
+<h2 id="build">Build</h2>
+<p>docker, npm, yarn</p>
+<h2 id="test">Test</h2>
+<ol>
+<li>單元測試: mocha.js, nyc, nock.js, faker.js</li>
+<li>測試工具: postman, curl</li>
+<li>性能測試: autocannon.js</li>
+<li>集成測試</li>
+</ol>
+<h2 id="release">Release</h2>
+<ol>
+<li>pkg.js: 打包Node.js包減少體積，也方便容器裝載</li>
+<li>docker: 製作部署鏡像</li>
+<li>npm: 發佈庫</li>
+</ol>
+<h2 id="deploy">Deploy</h2>
+<ol>
+<li>kubernetes: 提供可伸縮，可管理的容器服務部署</li>
+<li>Istio: 支持數據平面和控制平面</li>
+<li>docker-compose: 小工程可直接通過該工具部署管理</li>
+</ol>
+<h2 id="operate">Operate</h2>
+<ol>
+<li>kubernetes</li>
+<li>Istio xds</li>
+</ol>
+<h2 id="monitor">Monitor</h2>
+<ol>
+<li>ELK: 服務日誌查詢，APM性能監控</li>
+<li>prometheus: 採集性能數據和日誌</li>
+<li>grafana: 可視化採集數據</li>
+</ol>
+<h2 id="參考">參考</h2>
+<p><a title="https://devops.phodal.com/home" href="https://devops.phodal.com/home">ledge</a></p>
 ]]></content:encoded>
         </item>
     </channel>
