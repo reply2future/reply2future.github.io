@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Sun, 24 Mar 2024 12:37:38 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 24 Mar 2024 12:46:38 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -151,6 +151,54 @@
 <li><a title="https://prometheus.io/docs/introduction/overview/" href="https://prometheus.io/docs/introduction/overview/">prometheus overview</a></li>
 <li>為什麼使用類型<code>gauge</code> 而不使用<code>counter</code> -&gt; 因為可能like也可能取消；簡單為主 <a title="https://prometheus.io/docs/concepts/metric_types/" href="https://prometheus.io/docs/concepts/metric_types/">metrics type</a></li>
 <li><a title="https://k21academy.com/wp-content/uploads/2021/06/Prometheus-Server_Chart.png" href="https://k21academy.com/wp-content/uploads/2021/06/Prometheus-Server_Chart.png">prometheus架構圖</a></li>
+</ol>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[放輕鬆不輕鬆]]></title>
+            <guid>b5281616e191452780199e1a4408d5fd</guid>
+            <pubDate>Fri, 12 Jan 2024 07:42:47 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="催化劑">催化劑</h2>
+<p>活了二三十年的人生，經歷過12年寒窗苦讀，高考的奮戰到底，進到大學體會到不同家境不同道路的，出國留學，子承父業，出到社會之後馬上就是996，家人緊逼的相親市場，晚上睡個好覺也難，想要放輕鬆的打盤遊戲，也容易因為買錯一個裝備，而在遊戲裏和別人吵架，忙着保護家人，睡覺的時候也想着明天的工作進度一直沒有進展，睡不着了明天更加沒有精神加快進度，就更難以放鬆入眠。如此惡性循環，可能是這個社會大部分人的縮影了。甚至可能有人看到這裡，心跳加速，都想關掉這篇文章了。</p>
+<p>Talking more is just like bullshit. 直接入主題。</p>
+<h2 id="原則">原則</h2>
+<p>有兩大原則:</p>
+<ol>
+<li>it's okay to be not okay.</li>
+<li>人生課題分離。</li>
+</ol>
+<h2 id="如何實踐">如何實踐</h2>
+<h3 id="its-okay-to-be-not-okay">it's okay to be not okay</h3>
+<p>從小到大的教育都是要竭盡全力去做各種事情，每個人都期待着你可以「出人頭地」，有一番大事業，如果只是想成為一個簡單的小賣部老闆會被別人恥笑，因為不夠偉大，太過渺小，一定要每個人都是科學家，醫生，律師。如此環境熏陶下，真是上吊都不敢鬆一口氣。</p>
+<p>解法也很簡單，<code>it's okay to be not okay</code>。李嘉誠，馬斯克只有一個，你也只有一個你，沒必要要成為別人，你自己就很好了。而這些話我們需要有一個人去每人的提醒自己，不需要時刻緊繃，不需要時刻面對糟糕的人或事情。可能身邊的朋友的鼓勵，一句"你做得很好了"，就可以讓自己鬆了一口氣，如果沒有這樣的朋友(😂)或者覺得這種做法很尷尬也沒關係，有很多app可以每天定時的來一句提醒自己放鬆的說話，比如：<code>[motivation](https://motivation.app/)</code>，每天定時服用，這個和羅永浩先生的雞湯法有異曲同工之妙，他知道人性的弱點之一是懶惰，半途而廢。為了給自己打氣，他買了一百多斤的成功學勵志類二手書，堆在房門口，想放棄的時候，就拿出一本翻翻，一口氣上了三天學（💪）。</p>
+<p><img src="/_resources/81b8683505314be89343d569dc4a5c89.PNG" /></p>
+<h3 id="人生課題分離">人生課題分離</h3>
+<p>這是我看了「被討厭的勇氣」這本書得出來的，你應該要知道什麼是你「人生的課題」，什麼是別人對你的期望。「人生課題」分成三個部分：交友，工作和愛。</p>
+<blockquote>
+<p>要分清"能夠改變的"和"不能改變的"。我們無法改變"被給予了什麼"。但是，關於"如何去利用被給予的東西"，我們卻可以用自己的力量去改變。這就是不去關注"無法改變的"，而去關注"可以改變的"。這就是我所說的自我接納。-- 「被討厭的勇氣」</p>
+</blockquote>
+<p>還有最讓華人圈頭痛的父母寫子女的關係。</p>
+<blockquote>
+<p>苦惱於與孩子之間的關係的父母往往容易認為： 孩子就是我的人生。總之就是把孩子的課題也看成是自己的課題，總是只考慮孩子，而當意識到的時候，他們己經失去了自我。--「被討厭的勇氣」</p>
+</blockquote>
+<p>這個時候就要祭出<a title="https://qr.ae/pKm5Cw" href="https://qr.ae/pKm5Cw">最強法寶</a>：</p>
+<p><img src="/_resources/114f6c1a2b4948bea7aaed3805eee781.png" /></p>
+<p><img src="/_resources/76f1dfc4d1524aaea13ae928bd09c7ea.jpeg" /></p>
+<p>或者還有這個<a title="https://qr.ae/pKm5Hg" href="https://qr.ae/pKm5Hg">循環法寶</a>：</p>
+<p><img src="/_resources/0e3cc813281844f08617757447072c3c.jpeg" /></p>
+<h3>...</h3>
+<p>你居然看到了這裡，看來你的這口氣憋了好久，要放鬆一下，我的朋友。見是你，就把最後這個法寶也給你了，「信仰」。</p>
+<p>簡單來說，就是把這個鼓勵你的朋友轉成「信仰」，比如在南方多是觀音菩薩（本人無神論者，只是作個比喻）。如果你旅行的時候，因為另一半要吃某一樣製作耗時的甜點，而錯過了尾班車。這個時候先不要生氣和埋怨，可能是菩薩想要邀請你再探索一下這個地方，你轉換了心態，說不定第二天真給你找到更好的風景和美食。</p>
+<blockquote>
+<p>如果我們保持一樣的暗示和奬賞，就能植入一種新的慣常行為。但這還不夠，為了保持這個習慣，人們還得相信改變是可能的。而大多數時候，只有在团體的助力下，才能形成信仰。-- 「習慣的力量」</p>
+</blockquote>
+<h2 id="結語">結語</h2>
+<p>多的不說了，你也很努力了，it's okay to be not okay。別忘了奬勵一下走到這裡的自己。</p>
+<h2 id="參考">參考</h2>
+<ol>
+<li>我目前的人生</li>
+<li>書籍「被討厭的勇氣」</li>
+<li>書籍「習慣的力量」</li>
 </ol>
 ]]></content:encoded>
         </item>
