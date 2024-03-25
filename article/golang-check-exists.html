@@ -25,7 +25,7 @@
 
 <script async data-type="application/javascript" type="text/plain" data-name="google-ads" data-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756980640573536"
      crossorigin="anonymous"></script>
-    <title>BFS vs DFS - Reply2Future</title>
+    <title>golang 存在檢測方案 - Reply2Future</title>
   <link rel="stylesheet" href="/_markdown_plugin_assets/highlight.js/atom-one-light.css" /></head>
   <body>
     <div class="main">
@@ -34,41 +34,56 @@
       </nav>
       <article>
         <header>
-          <h1 class="article-title">BFS vs DFS</h1>
+          <h1 class="article-title">golang 存在檢測方案</h1>
           <div class="article-info">
             <div>
               <span
-                >Created At：<time datetime="1679673706341"
-                  >2023-03-25 00:01</time
+                >Created At：<time datetime="1679673624166"
+                  >2023-03-25 00:00</time
                 ></span
               >
               <span
-                >Updated At：<time datetime="1679673713215"
-                  >2023-03-25 00:01</time
+                >Updated At：<time datetime="1679673628889"
+                  >2023-03-25 00:00</time
                 ></span
               >
             </div>
             
             <div>
               Keywords: 
-              <span class="keyword">algorithm</span>
+              <span class="keyword">golang</span>
               
             </div>
             
           </div>
         </header>
-        <div class="article-content markdown-body"><h1 id="背景">背景</h1>
-<p>搜索算法的兩種思路，廣度優先(BFS)和深度優先(DFS)遍歷圖，都通過記錄已遍歷的節點避免圖中的環。</p>
-<h2 id="bfs">BFS</h2>
-<div><pre class="hljs"><code>visited := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[Pos]<span class="hljs-keyword">bool</span>)
-stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-comment">// 下一次要遍歷的節點，空的時候結束，每次將節點周圍的節點入列。</span></code></pre></div>
-<h2 id="dfs">DFS</h2>
-<div><pre class="hljs"><code>visited := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[Pos]<span class="hljs-keyword">bool</span>)
+        <div class="article-content markdown-body"><h2 id="map">map</h2>
+<p>有時侯需要記綠一下數據集是否存在，就會想到用<code>map</code>數據結構，比如：<code>map[int]bool</code>，但是如果並不關心或者不用儲存值的話就可以使用 <code>map[int]interface{}</code>，這樣的區別是可以賦值 <code>struct{}{}</code>，減少內存空間的占用：</p>
+<div><pre class="hljs"><code>cache := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-keyword">int</span>]<span class="hljs-keyword">interface</span>{})
+cache[<span class="hljs-number">1</span>] = <span class="hljs-keyword">struct</span>{}{}</code></pre></div>
+<p>其中內存空間查看： <a title="https://go.dev/play/p/mJj4rNQJsxD" href="https://go.dev/play/p/mJj4rNQJsxD">playground</a></p>
+<div><pre class="hljs"><code><span class="hljs-keyword">package</span> main
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">travel</span><span class="hljs-params">(node)</span></span> {
-    travel(node.children)
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">"fmt"</span>
+    <span class="hljs-string">"unsafe"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    a := <span class="hljs-keyword">struct</span>{}{}
+    b := <span class="hljs-literal">true</span>
+    c := <span class="hljs-number">0</span>
+    d := <span class="hljs-string">""</span>
+    fmt.Println(unsafe.Sizeof(a))
+    fmt.Println(unsafe.Sizeof(b))
+    fmt.Println(unsafe.Sizeof(c))
+    fmt.Println(unsafe.Sizeof(d))
 }</code></pre></div>
-<p>通過遞歸的方式入棧子節點。</p>
+<p>結果</p>
+<div><pre class="hljs"><code>0
+1
+8
+16</code></pre></div>
 </div>
       </article>
       <div id="disqus_thread"></div>
@@ -78,7 +93,7 @@ stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-commen
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
     var disqus_config = function () {
     this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = "b07a2ee323804572bfaf7ae2efeb4bcf"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.identifier = "6836bd3047f44a2e92230c14f0873021"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
 	(function() { // DON'T EDIT BELOW THIS LINE
