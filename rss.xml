@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Mon, 25 Mar 2024 04:46:09 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 21 Nov 2024 00:03:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -200,107 +200,6 @@
 <li>書籍「被討厭的勇氣」</li>
 <li>書籍「習慣的力量」</li>
 </ol>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[BFS vs DFS]]></title>
-            <guid>b07a2ee323804572bfaf7ae2efeb4bcf</guid>
-            <pubDate>Fri, 24 Mar 2023 16:01:46 GMT</pubDate>
-            <content:encoded><![CDATA[<h1 id="背景">背景</h1>
-<p>搜索算法的兩種思路，廣度優先(BFS)和深度優先(DFS)遍歷圖，都通過記錄已遍歷的節點避免圖中的環。</p>
-<h2 id="bfs">BFS</h2>
-<div><pre class="hljs"><code>visited := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[Pos]<span class="hljs-keyword">bool</span>)
-stack := <span class="hljs-built_in">make</span>([]Pos) <span class="hljs-comment">// 下一次要遍歷的節點，空的時候結束，每次將節點周圍的節點入列。</span></code></pre></div>
-<h2 id="dfs">DFS</h2>
-<div><pre class="hljs"><code>visited := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[Pos]<span class="hljs-keyword">bool</span>)
-
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">travel</span><span class="hljs-params">(node)</span></span> {
-    travel(node.children)
-}</code></pre></div>
-<p>通過遞歸的方式入棧子節點。</p>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[golang 存在檢測方案]]></title>
-            <guid>6836bd3047f44a2e92230c14f0873021</guid>
-            <pubDate>Fri, 24 Mar 2023 16:00:24 GMT</pubDate>
-            <content:encoded><![CDATA[<h2 id="map">map</h2>
-<p>有時侯需要記綠一下數據集是否存在，就會想到用<code>map</code>數據結構，比如：<code>map[int]bool</code>，但是如果並不關心或者不用儲存值的話就可以使用 <code>map[int]interface{}</code>，這樣的區別是可以賦值 <code>struct{}{}</code>，減少內存空間的占用：</p>
-<div><pre class="hljs"><code>cache := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-keyword">int</span>]<span class="hljs-keyword">interface</span>{})
-cache[<span class="hljs-number">1</span>] = <span class="hljs-keyword">struct</span>{}{}</code></pre></div>
-<p>其中內存空間查看： <a title="https://go.dev/play/p/mJj4rNQJsxD" href="https://go.dev/play/p/mJj4rNQJsxD">playground</a></p>
-<div><pre class="hljs"><code><span class="hljs-keyword">package</span> main
-
-<span class="hljs-keyword">import</span> (
-    <span class="hljs-string">"fmt"</span>
-    <span class="hljs-string">"unsafe"</span>
-)
-
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
-    a := <span class="hljs-keyword">struct</span>{}{}
-    b := <span class="hljs-literal">true</span>
-    c := <span class="hljs-number">0</span>
-    d := <span class="hljs-string">""</span>
-    fmt.Println(unsafe.Sizeof(a))
-    fmt.Println(unsafe.Sizeof(b))
-    fmt.Println(unsafe.Sizeof(c))
-    fmt.Println(unsafe.Sizeof(d))
-}</code></pre></div>
-<p>結果</p>
-<div><pre class="hljs"><code>0
-1
-8
-16</code></pre></div>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[golang append修改原數組情況]]></title>
-            <guid>fa1fefd697894f3d86e4e9e7672d8e5b</guid>
-            <pubDate>Fri, 24 Mar 2023 16:00:02 GMT</pubDate>
-            <content:encoded><![CDATA[<h2 id="背景">背景</h2>
-<p><a title="https://go.dev/play/p/h751UX98ow4" href="https://go.dev/play/p/h751UX98ow4">示例代碼</a></p>
-<div><pre class="hljs"><code><span class="hljs-keyword">package</span> main
-
-<span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span>
-
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
-    a := []<span class="hljs-keyword">int</span>{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>}
-    a2 := <span class="hljs-built_in">append</span>(a[:<span class="hljs-number">2</span>], a[<span class="hljs-number">3</span>:]...)
-    fmt.Println(a2)
-    fmt.Println(a)
-    fmt.Println(&amp;a2[<span class="hljs-number">0</span>] == &amp;a[<span class="hljs-number">0</span>])
-    a[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>
-    fmt.Println(a2)
-    fmt.Println(a)
-    fmt.Println(<span class="hljs-string">"-------------"</span>)
-    b := []<span class="hljs-keyword">int</span>{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>}
-    b2 := <span class="hljs-built_in">append</span>(b[:<span class="hljs-number">2</span>], []<span class="hljs-keyword">int</span>{<span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>}...)
-    fmt.Println(b2)
-    fmt.Println(b)
-    fmt.Println(&amp;b2[<span class="hljs-number">0</span>] == &amp;b[<span class="hljs-number">0</span>])
-    b[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>
-    fmt.Println(b2)
-    fmt.Println(b)
-}</code></pre></div>
-<p>輸出結果：</p>
-<div><pre class="hljs"><code>[1 2 4 5 6 7]
-[1 2 4 5 6 7 7]
-true
-[-1 2 4 5 6 7]
-[-1 2 4 5 6 7 7]
--------------
-[1 2 5 6 7 8 9 10]
-[1 2 3 4]
-false
-[1 2 5 6 7 8 9 10]
-[-1 2 3 4]</code></pre></div>
-<h2 id="解釋">解釋</h2>
-<p><code>a[0:2]</code>長度為2, <code>a[3:]</code>長度為4，原本的數組a長度為7,不需要擴展生成新數組( <a title="https://pkg.go.dev/builtin#append" href="https://pkg.go.dev/builtin#append">api說明</a> ）</p>
-<blockquote>
-<p>append 內置函數將元素附加到切片的末尾。如果它有足夠的容量，則重新劃分目標以容納新元素。如果沒有，將分配一個新的底層數組。 Append 返回更新後的切片。因此有必要將 append 的結果存儲在保存切片本身的變量中：</p>
-</blockquote>
-<p>所以，就在原來的數組a上面做修改。</p>
-<p>而b的情況相反，新數組長度為6，大於b的長度4，擴展了數組，生成新的數組。</p>
 ]]></content:encoded>
         </item>
         <item>
@@ -871,6 +770,105 @@ s.<span class="hljs-title function_">on</span>(<span class="hljs-string">'error'
 <li><a title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error MDN說明</a></li>
 <li><a title="https://www.joyent.com/node-js/production/design/errors" href="https://www.joyent.com/node-js/production/design/errors">Error Handling in Node.js</a></li>
 </ol>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[DevOps工具鏈]]></title>
+            <guid>514d544afb294f6aaf390efd3e085446</guid>
+            <pubDate>Fri, 24 Mar 2023 15:36:17 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="工具鏈">工具鏈</h2>
+<p><img alt="devops-artikel-1-foto-1.jpeg" /></p>
+<h2 id="plan">Plan</h2>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>說明</th>
+<th>開源</th>
+<th>優勢</th>
+<th>劣勢</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>禪道</td>
+<td>集需求開發項目管理一身</td>
+<td>是</td>
+<td>開源版本適合中小型企業</td>
+<td>欠缺新手引導</td>
+</tr>
+<tr>
+<td>redmine</td>
+<td>靈活的項目管理軟件</td>
+<td>是</td>
+<td>老牌項目管理軟件</td>
+<td>界面簡陋，欠缺新手引導</td>
+</tr>
+<tr>
+<td>jira</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>github</td>
+<td>最流行的託管平臺</td>
+<td>否</td>
+<td>最流行功能齊全</td>
+<td>國內訪問慢，針對代碼</td>
+</tr>
+<tr>
+<td>gitlab</td>
+<td>類似github</td>
+<td>是</td>
+<td>功能接近gitlab，可自行部署</td>
+<td>欠缺項目管理能力</td>
+</tr>
+</tbody>
+</table>
+<h2 id="code">Code</h2>
+<ol>
+<li>版本管理工具: git, svn</li>
+<li>代碼託管平臺: gitlab, github</li>
+<li>IDE: IDEA, vscode</li>
+<li>語言: JavaScript, TypeScript</li>
+<li>代碼規範: Standard.js</li>
+</ol>
+<h2 id="build">Build</h2>
+<p>docker, npm, yarn</p>
+<h2 id="test">Test</h2>
+<ol>
+<li>單元測試: mocha.js, nyc, nock.js, faker.js</li>
+<li>測試工具: postman, curl</li>
+<li>性能測試: autocannon.js</li>
+<li>集成測試</li>
+</ol>
+<h2 id="release">Release</h2>
+<ol>
+<li>pkg.js: 打包Node.js包減少體積，也方便容器裝載</li>
+<li>docker: 製作部署鏡像</li>
+<li>npm: 發佈庫</li>
+</ol>
+<h2 id="deploy">Deploy</h2>
+<ol>
+<li>kubernetes: 提供可伸縮，可管理的容器服務部署</li>
+<li>Istio: 支持數據平面和控制平面</li>
+<li>docker-compose: 小工程可直接通過該工具部署管理</li>
+</ol>
+<h2 id="operate">Operate</h2>
+<ol>
+<li>kubernetes</li>
+<li>Istio xds</li>
+</ol>
+<h2 id="monitor">Monitor</h2>
+<ol>
+<li>ELK: 服務日誌查詢，APM性能監控</li>
+<li>prometheus: 採集性能數據和日誌</li>
+<li>grafana: 可視化採集數據</li>
+</ol>
+<h2 id="參考">參考</h2>
+<p><a title="https://devops.phodal.com/home" href="https://devops.phodal.com/home">ledge</a></p>
 ]]></content:encoded>
         </item>
     </channel>
