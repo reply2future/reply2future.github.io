@@ -4,9 +4,70 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Thu, 21 Nov 2024 00:03:42 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 21 Nov 2024 03:37:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
+        <item>
+            <title><![CDATA[How to Create a Bot for SimpleX-Chat with TypeScript]]></title>
+            <guid>1f1a26e7c1654e0c8fa945614c1af327</guid>
+            <pubDate>Thu, 21 Nov 2024 00:35:40 GMT</pubDate>
+            <content:encoded><![CDATA[<h1 id="background">Background</h1>
+<p><a title="https://simplex.chat/" href="https://simplex.chat/">SimpleX Chat</a>, which is the first messenger without user IDs and privacy-focused, is also an open source project and you could self host the server as you like. But it's not many bot tutorials and deploy it simply. As a <a title="https://rickcarlino.com/2024/simplex-chat-bots.html" href="https://rickcarlino.com/2024/simplex-chat-bots.html">blog</a> said, it has to use <a title="https://simplex.chat/docs/cli.html" href="https://simplex.chat/docs/cli.html"><code>CLI</code></a> to be gateway/bridge to communicate between <code>SMP Server</code> and your bot server.</p>
+<h2 id="architecture">Architecture</h2>
+<p><img src="/_resources/f7355101073744758c764aad1042c03c.png" /></p>
+<h2 id="what-i-expected">What I Expected</h2>
+<p>I want to put the <code>CLI</code> to the docker container so I could deploy it easily.</p>
+<p><strong>But</strong> I faced the issue that I need to input the username to create user profile when running the <code>CLI</code> at the first time, and there is no <code>CLI</code> option to set it. To make matters worse, some APIs like <code>create group</code> didn't work in <a title="https://github.com/simplex-chat/simplex-chat/tree/stable/packages/simplex-chat-client/typescript" href="https://github.com/simplex-chat/simplex-chat/tree/stable/packages/simplex-chat-client/typescript">typescript SDK</a>.</p>
+<h2 id="what-i-did">What I did</h2>
+<p>So I forked the repo to fix the problems of <code>CLI</code> and <code>SDK</code>, and created a <a title="https://github.com/reply2future/simplex-chat-gateway" href="https://github.com/reply2future/simplex-chat-gateway">repo</a> to show how to dockerize the <code>CLI</code> and build a bot server.</p>
+<h3 id="dockerize-cli">Dockerize <code>CLI</code></h3>
+<p>I add <code>--display-name</code> option to the <code>CLI</code> so I could create user profile with non-interactive mode. I created a docker image named <a title="https://hub.docker.com/r/feimeizhan/simplex-chat-gateway" href="https://hub.docker.com/r/feimeizhan/simplex-chat-gateway"><code>feimeizhan/simplex-chat-gateway</code></a> which code is <a title="https://github.com/reply2future/simplex-chat/tree/deploy" href="https://github.com/reply2future/simplex-chat/tree/deploy">here</a>.</p>
+<h3 id="typescript-sdk">Typescript SDK</h3>
+<p>I fixed the issue like <code>create group</code> error and no <code>group list</code>, and publish as <code>@reply2future/simplex-chat</code> which code is <a title="https://github.com/reply2future/simplex-chat/tree/bugfix/issue%235132_create_group/packages/simplex-chat-client/typescript" href="https://github.com/reply2future/simplex-chat/tree/bugfix/issue%235132_create_group/packages/simplex-chat-client/typescript">here</a></p>
+<h3 id="bot-center">bot-center</h3>
+<p>I also created a <a title="https://github.com/reply2future/simplex-chat-gateway/tree/main/bot-center" href="https://github.com/reply2future/simplex-chat-gateway/tree/main/bot-center">bot example</a> to show how to use <a title="https://github.com/reply2future/simplex-chat/tree/bugfix/issue%235132_create_group/packages/simplex-chat-client/typescript" href="https://github.com/reply2future/simplex-chat/tree/bugfix/issue%235132_create_group/packages/simplex-chat-client/typescript">typescript sdk</a>.</p>
+<h2 id="how-to-use-simplex-chat-gateway">How to Use <code>simplex-chat-gateway</code></h2>
+<h3 id="requirements">Requirements</h3>
+<ol>
+<li><code>docker</code> and <code>docker-compose</code></li>
+<li>Linux system</li>
+</ol>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Run the comand <code>git clone https://github.com/reply2future/simplex-chat-gateway.git</code> to clone the repo and cd to the directory of repo.</li>
+<li>Copy <code>.env.template</code> to <code>.env</code> in current directory, and change the environment variables as you need.</li>
+<li>Run the command <code>docker compose up -d</code></li>
+<li>You could see the <code>bot address</code> and  <code>groupId</code> in the console of docker container <code>bot-center</code> like below:<img src="/_resources/b5fcdb1a14ec4f93b29fc175b4e33196.png" /></li>
+<li>You need to add the bot by paste the bot address to your simplex-chat client, and the bot accepts the friend request automatically, and you could see the <code>contact_id</code> of your user profile.</li>
+<li>Send a message like <code>/square-num 8</code> which is pre-defined handler in <a title="https://github.com/reply2future/simplex-chat-gateway/blob/main/bot-center/handlers/direct/square-num.ts" href="https://github.com/reply2future/simplex-chat-gateway/blob/main/bot-center/handlers/direct/square-num.ts"><code>bot-center</code></a>, then the bot would reply <code>8 * 8 = 64</code></li>
+<li>(Optional) add you to the pre-created group like <code>Notification</code> by calling the api of <code>bot-center</code> like  <code>http://localhost:6794/invite/:contact_id</code>, the more information you could see the code <a title="https://github.com/reply2future/simplex-chat-gateway/blob/45d6eecb71413b525eaca6ba71e6614d287e7cfa/bot-center/server.ts#L39" href="https://github.com/reply2future/simplex-chat-gateway/blob/45d6eecb71413b525eaca6ba71e6614d287e7cfa/bot-center/server.ts#L39">here</a>, so you could send message to the group from <code>bot-center</code> by using api like  <code>http://localhost:6794/notification/:group_id</code>.</li>
+</ol>
+<h2 id="how-to-create-your-handler-in-bot-center">How to Create your handler in <code>bot-center</code></h2>
+<p>I will show it how to add your handler to <a title="https://github.com/reply2future/simplex-chat-gateway/tree/main/bot-center" href="https://github.com/reply2future/simplex-chat-gateway/tree/main/bot-center"><code>bot-center</code></a></p>
+<h3 id="requirements-2">Requirements</h3>
+<p><code>TypeScript</code></p>
+<h3 id="steps-2">Steps</h3>
+<ol>
+<li>Go to the <code>bot-center</code> directory</li>
+<li>Create a handler in <code>./handlers</code> directory, like <code>./handlers/direct/echo.ts</code></li>
+<li>Implement interface <code>IHandler</code> in <code>echo.ts</code></li>
+<li>Add <code>echo.ts</code> to <code>./handlers/index.ts</code>, like <code>['echo', new EchoHandler()]</code></li>
+<li>Deploy your <code>bot-center</code></li>
+<li>Test it by sending a direct message to bot like <code>/echo test</code></li>
+</ol>
+<h2 id="more-sdks">More SDKs</h2>
+<p>The official supported SDK is TypeScript, but you could create your SDK using your familiar programming language, because it uses websocket.</p>
+<h2 id="why-no-windowsmacos">Why no windows/macOS</h2>
+<p>Because of <a title="https://github.com/simplex-chat/simplexmq/pull/1280" href="https://github.com/simplex-chat/simplexmq/pull/1280">the secure reason</a> the SimpleX-Chat agent will bind <code>127.0.0.1</code> only, and <code>network_mode: host</code> is not supported in a meaningful way on macOS and Windows due to Docker's reliance on a VM architecture, so it doesn't work in macos and windows.</p>
+<h2 id="ref">Ref</h2>
+<ol>
+<li><a title="https://rickcarlino.com/2024/simplex-chat-bots.html" href="https://rickcarlino.com/2024/simplex-chat-bots.html">Exploring Simplex.Chat, A Scriptable, Decentralized Messaging App</a></li>
+<li><a title="https://simplex.chat/docs/cli.html" href="https://simplex.chat/docs/cli.html">SimpleX Chat terminal (console) app for Linux/MacOS/Windows</a></li>
+<li><a title="https://github.com/reply2future/simplex-chat-gateway" href="https://github.com/reply2future/simplex-chat-gateway">simplex-chat-gateway repo</a></li>
+<li><a title="https://www.perplexity.ai/search/what-is-the-difference-of-netw-Bh7fTh4FRMqT8NCgC_PATw#0" href="https://www.perplexity.ai/search/what-is-the-difference-of-netw-Bh7fTh4FRMqT8NCgC_PATw#0">what is the difference of <code>network_mode: host</code> between linux and macos/windows?</a></li>
+</ol>
+]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[請一個提摩隊長--少數派個人數據監控]]></title>
             <guid>2ef2bc7ff17c47bda9291a20f678997a</guid>
