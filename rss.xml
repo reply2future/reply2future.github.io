@@ -4,12 +4,12 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Sat, 15 Feb 2025 08:00:04 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 15 Feb 2025 08:36:19 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
             <title><![CDATA[How to Create a Bot for SimpleX-Chat with TypeScript]]></title>
-            <link>article/how-to-create-a-bot-for-simplex-chat-with-typescript</link>
+            <link>https://blog.reply2future.top/how-to-create-a-bot-for-simplex-chat-with-typescript</link>
             <guid>1f1a26e7c1654e0c8fa945614c1af327</guid>
             <pubDate>Thu, 21 Nov 2024 00:35:40 GMT</pubDate>
             <content:encoded><![CDATA[<h1 id="background">Background</h1>
@@ -71,7 +71,7 @@
         </item>
         <item>
             <title><![CDATA[請一個提摩隊長--少數派個人數據監控]]></title>
-            <link>article/monitor-sspai-data</link>
+            <link>https://blog.reply2future.top/monitor-sspai-data</link>
             <guid>2ef2bc7ff17c47bda9291a20f678997a</guid>
             <pubDate>Thu, 18 Jan 2024 00:49:24 GMT</pubDate>
             <content:encoded><![CDATA[<h2 id="背景">背景</h2>
@@ -219,7 +219,7 @@
         </item>
         <item>
             <title><![CDATA[放輕鬆不輕鬆]]></title>
-            <link>article/relaxing-is-not-relaxed</link>
+            <link>https://blog.reply2future.top/relaxing-is-not-relaxed</link>
             <guid>b5281616e191452780199e1a4408d5fd</guid>
             <pubDate>Fri, 12 Jan 2024 07:42:47 GMT</pubDate>
             <content:encoded><![CDATA[<h2 id="催化劑">催化劑</h2>
@@ -268,7 +268,7 @@
         </item>
         <item>
             <title><![CDATA[保護個人穩私]]></title>
-            <link>article/protect-personal-private</link>
+            <link>https://blog.reply2future.top/protect-personal-private</link>
             <guid>8f7e0ae0be6f417fb249ca807d60bdd3</guid>
             <pubDate>Fri, 24 Mar 2023 15:58:48 GMT</pubDate>
             <content:encoded><![CDATA[<h2 id="目的">目的</h2>
@@ -424,7 +424,7 @@
         </item>
         <item>
             <title><![CDATA[Logger的總結]]></title>
-            <link>article/logger</link>
+            <link>https://blog.reply2future.top/logger</link>
             <guid>3944b2f1aa194397a8c06edfff8c2b57</guid>
             <pubDate>Fri, 24 Mar 2023 15:57:03 GMT</pubDate>
             <content:encoded><![CDATA[<h2 id="背景">背景</h2>
