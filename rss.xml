@@ -4,7 +4,7 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Thu, 21 Nov 2024 03:37:20 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 15 Feb 2025 02:46:32 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
         <item>
@@ -514,8 +514,8 @@
             <guid>0d4c39a3bf294cacacede00572ce5044</guid>
             <pubDate>Fri, 24 Mar 2023 15:56:11 GMT</pubDate>
             <content:encoded><![CDATA[<h2 id="背景">背景</h2>
-<p><span style="color:#172b4d" class="jop-noMdConv">科普權限設計和原理。</span></p>
-<p><span style="color:#172b4d" class="jop-noMdConv">資源權限控制，涉及到幾個方面</span></p>
+<p>科普權限設計和原理。</p>
+<p>資源權限控制，涉及到幾個方面:</p>
 <ol>
 <li>顆粒度</li>
 <li>控制邏輯</li>
@@ -547,9 +547,9 @@
 <td>同上</td>
 </tr>
 <tr>
-<td>@cols=1:RBAC</td>
-<td>@cols=1:<strong>role-based access control</strong><span style="color:#202122" class="jop-noMdConv"> </span></td>
-<td>@cols=1:是一種限制授權用戶訪問系統的方法。它是一種實現強制訪問控制（MAC）或自由訪問控制（DAC）的方法，關鍵是角色和組來控制，其中組是用戶的集合而不是權限的集合；三大原則<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">最小權限原則</li><li class="jop-noMdConv"><span style="color:#555555" class="jop-noMdConv">責任分離原則</span></li><li class="jop-noMdConv"><span style="color:#555555" class="jop-noMdConv">數據抽象</span></li></ol></td>
+<td>RBAC</td>
+<td><strong>role-based access control</strong><span style="color:#202122" class="jop-noMdConv"> </span></td>
+<td>是一種限制授權用戶訪問系統的方法。它是一種實現強制訪問控制（MAC）或自由訪問控制（DAC）的方法，關鍵是角色和組來控制，其中組是用戶的集合而不是權限的集合；三大原則<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">最小權限原則</li><li class="jop-noMdConv"><span style="color:#555555" class="jop-noMdConv">責任分離原則</span></li><li class="jop-noMdConv"><span style="color:#555555" class="jop-noMdConv">數據抽象</span></li></ol></td>
 </tr>
 </tbody>
 </table>
@@ -559,8 +559,8 @@
 <tr>
 <th>方法</th>
 <th>場景</th>
-<th>@cols=1:結構</th>
-<th>@cols=1:例子</th>
+<th>結構</th>
+<th>例子</th>
 <th>優勢</th>
 <th>劣勢</th>
 </tr>
@@ -569,16 +569,16 @@
 <tr>
 <td>ABAC/PBAC</td>
 <td><ol class="jop-noMdConv"><li class="jop-noMdConv">api和微服務安全</li><li class="jop-noMdConv">應用安全</li><li class="jop-noMdConv">數據庫安全</li><li class="jop-noMdConv">數據安全</li><li class="jop-noMdConv">大數據安全</li><li class="jop-noMdConv">文件服務安全</li></ol></td>
-<td>@cols=1:<ol class="jop-noMdConv"><li class="jop-noMdConv"><b class="jop-noMdConv">對象</b>：用戶 ID、用戶職位、部門、入職時間、是否通過試用期等等</li><li class="jop-noMdConv"><b class="jop-noMdConv">資源</b>：資源創建日期、資源最新更新時間、資源類型（文件、訂單詳情數據）、資源分類（訂單管理、文章管理等）等</li><li class="jop-noMdConv"><b class="jop-noMdConv">操作</b>：新增、查看、刪除等</li><li class="jop-noMdConv"><b class="jop-noMdConv">環境</b>：IP 地址、時間等</li></ol></td>
-<td>@cols=1:初級前端工程師（對象）可以下載（操作）內網中的（環境）GitLab 前端源代碼（資源）</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv"><b class="jop-noMdConv">對象</b>：用戶 ID、用戶職位、部門、入職時間、是否通過試用期等等</li><li class="jop-noMdConv"><b class="jop-noMdConv">資源</b>：資源創建日期、資源最新更新時間、資源類型（文件、訂單詳情數據）、資源分類（訂單管理、文章管理等）等</li><li class="jop-noMdConv"><b class="jop-noMdConv">操作</b>：新增、查看、刪除等</li><li class="jop-noMdConv"><b class="jop-noMdConv">環境</b>：IP 地址、時間等</li></ol></td>
+<td>初級前端工程師（對象）可以下載（操作）內網中的（環境）GitLab 前端源代碼（資源）</td>
 <td><ol class="jop-noMdConv"><li class="jop-noMdConv">靈活</li><li class="jop-noMdConv">顆粒度小</li><li class="jop-noMdConv">除了角色和組，還可以通過用戶，資源（部門，分類等），行動，上下文（時間，位置，ip等）</li></ol></td>
 <td><ol class="jop-noMdConv"><li class="jop-noMdConv">基於 XACML 實現的 ABAC 模型在執行 效率、語法結構等方面存在不足</li><li class="jop-noMdConv">策略制定麻煩</li><li class="jop-noMdConv">靈活帶來複雜性，比如用戶id配置權限會破壞原來角色策略，難以控制權限訪問</li></ol></td>
 </tr>
 <tr>
 <td>RBAC</td>
 <td>單系統或者應用如計算機用戶權限控制</td>
-<td>@cols=1:權限→角色→用戶</td>
-<td>@cols=1:<img src="https://www.notion.so/image/https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F97d6526b-5ad2-4dcc-9c22-e21f37773a87%2FRBAC_%25282%2529.svg%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3DAKIAT73L2G45EIPT3X45%252F20211205%252Fus-west-2%252Fs3%252Faws4_request%26X-Amz-Date%3D20211205T102845Z%26X-Amz-Expires%3D86400%26X-Amz-Signature%3D45a3d5586d34d6d165de558b7f70fb6f8f74c97dd21662a86ddec6049c97e5c0%26X-Amz-SignedHeaders%3Dhost%26x-id%3DGetObject?table=block&amp;id=0e598390-1ae3-4e47-ba1e-924c6e0bb6e6&amp;cache=v2" alt="notion image" /><br class="jop-noMdConv" /></td>
+<td>權限→角色→用戶</td>
+<td><img src="https://www.notion.so/image/https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F97d6526b-5ad2-4dcc-9c22-e21f37773a87%2FRBAC_%25282%2529.svg%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Content-Sha256%3DUNSIGNED-PAYLOAD%26X-Amz-Credential%3DAKIAT73L2G45EIPT3X45%252F20211205%252Fus-west-2%252Fs3%252Faws4_request%26X-Amz-Date%3D20211205T102845Z%26X-Amz-Expires%3D86400%26X-Amz-Signature%3D45a3d5586d34d6d165de558b7f70fb6f8f74c97dd21662a86ddec6049c97e5c0%26X-Amz-SignedHeaders%3Dhost%26x-id%3DGetObject?table=block&amp;id=0e598390-1ae3-4e47-ba1e-924c6e0bb6e6&amp;cache=v2" alt="notion image" /><br class="jop-noMdConv" /></td>
 <td><ol class="jop-noMdConv"><li class="jop-noMdConv">穩定：從管理角度出發，角色是爲了解決特定問題而被創造的，也就是解決分工問題，而用戶的變動幾率比系統裏的角色大多了，角色這一定義相對會更加穩定一些。</li><li class="jop-noMdConv">簡單：用戶與權限的邏輯分離，使得權限只和角色相關。而根據上文，角色是被相關干係人或行業直接創造出來的，以角色爲核心的權限管理體系的理解成本和學習成本相對於新造概念會少上很多，非常利於在內部推廣。</li></ol></td>
 <td>因爲權限控制都和角色有關，會遇到一下問題：<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">臨時需要新增權限就只能新增角色，可能導致角色爆炸膨脹，難以管理；</li><li class="jop-noMdConv">新增資源也可能需要更改大部分角色配置，難以管理</li></ol></td>
 </tr>
@@ -590,14 +590,14 @@
 <tr>
 <th></th>
 <th>OPA</th>
-<th>@cols=1:Casbin</th>
+<th>Casbin</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td></td>
 <td>OPA</td>
-<td>@cols=1:Casbin</td>
+<td>Casbin</td>
 </tr>
 <tr>
 <td>---</td>
@@ -607,77 +607,77 @@
 <tr>
 <td>定義</td>
 <td>策略引擎，有自己的語言Rego</td>
-<td>@cols=1:權限控制庫，支持RBAC，ABAC，ACL等多種模型</td>
+<td>權限控制庫，支持RBAC，ABAC，ACL等多種模型</td>
 </tr>
 <tr>
 <td>架構特點</td>
-<td><img alt="integration.png" /><br class="jop-noMdConv" /></td>
-<td>@cols=1:<img alt="Casbin架構.png" /></td>
+<td><img src="/_resources/7cacfafaa41c41c59ddd03093667df5f.png" /> <br class="jop-noMdConv" /></td>
+<td><img src="/_resources/351aacb5e5da45afaa991480dc567984.png" /></td>
 </tr>
 <tr>
 <td>支持模型</td>
 <td>Access Control<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">RBAC</li><li class="jop-noMdConv">ABAC</li></ol>Envoy<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">jwt</li><li class="jop-noMdConv">url</li><li class="jop-noMdConv">roles</li></ol>Kubernetes<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">label</li><li class="jop-noMdConv">image safety</li><li class="jop-noMdConv">ingress conflicts</li></ol><a title="https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/" href="https://www.openpolicyagent.org/docs/latest/comparison-to-other-systems/">有案例</a><br class="jop-noMdConv" /><br class="jop-noMdConv" />代碼<a title="https://play.openpolicyagent.org/p/CMY8T79ZoB" href="https://play.openpolicyagent.org/p/CMY8T79ZoB">演練</a><br class="jop-noMdConv" /></td>
-<td>@cols=1:ACL<br class="jop-noMdConv" />ACL with superuser<br class="jop-noMdConv" />ACL without users<br class="jop-noMdConv" />ACL without resources<br class="jop-noMdConv" />RBAC<br class="jop-noMdConv" />RBAC with resource roles<br class="jop-noMdConv" />RBAC with domains/tenants<br class="jop-noMdConv" />ABAC<br class="jop-noMdConv" />RESTful<br class="jop-noMdConv" />Deny-override<br class="jop-noMdConv" />Allow-and-deny<br class="jop-noMdConv" />Priority<br class="jop-noMdConv" />Explicit Priority<br class="jop-noMdConv" />Subject-Priority<br class="jop-noMdConv" /><br class="jop-noMdConv" /><br class="jop-noMdConv" /><a title="https://casbin.org/en/editor/" href="https://casbin.org/en/editor/">案例和代碼演練</a></td>
+<td>ACL<br class="jop-noMdConv" />ACL with superuser<br class="jop-noMdConv" />ACL without users<br class="jop-noMdConv" />ACL without resources<br class="jop-noMdConv" />RBAC<br class="jop-noMdConv" />RBAC with resource roles<br class="jop-noMdConv" />RBAC with domains/tenants<br class="jop-noMdConv" />ABAC<br class="jop-noMdConv" />RESTful<br class="jop-noMdConv" />Deny-override<br class="jop-noMdConv" />Allow-and-deny<br class="jop-noMdConv" />Priority<br class="jop-noMdConv" />Explicit Priority<br class="jop-noMdConv" />Subject-Priority<br class="jop-noMdConv" /><br class="jop-noMdConv" /><br class="jop-noMdConv" /><a title="https://casbin.org/en/editor/" href="https://casbin.org/en/editor/">案例和代碼演練</a></td>
 </tr>
 <tr>
-<td>@cols=1:在線演練</td>
-<td>@cols=1:<a title="https://casbin.org/en/editor/" href="https://casbin.org/en/editor/">https://casbin.org/en/editor/</a></td>
-<td>@cols=1:<a title="https://play.openpolicyagent.org/" href="https://play.openpolicyagent.org/">https://play.openpolicyagent.org/</a></td>
+<td>在線演練</td>
+<td><a title="https://casbin.org/en/editor/" href="https://casbin.org/en/editor/">https://casbin.org/en/editor/</a></td>
+<td><a title="https://play.openpolicyagent.org/" href="https://play.openpolicyagent.org/">https://play.openpolicyagent.org/</a></td>
 </tr>
 <tr>
-<td>@cols=1:定義語法</td>
-<td>@cols=1:Rego，簡單</td>
-<td>@cols=1:config語法，簡單<br class="jop-noMdConv" /><br class="jop-noMdConv" /><img alt="Snipaste_2021-12-28_16-23-33.png" /></td>
+<td>定義語法</td>
+<td>Rego，簡單</td>
+<td>config語法，簡單<br class="jop-noMdConv" /><br class="jop-noMdConv" /><img src="/_resources/0bac35731c7a430c914a704dfad40c42.png" /></td>
 </tr>
 <tr>
-<td>@cols=1:接入形式</td>
-<td>@cols=1:服務或者庫</td>
-<td>@cols=1:庫</td>
+<td>接入形式</td>
+<td>service or library</td>
+<td>library</td>
 </tr>
 <tr>
-<td>@cols=1:支持接入語言</td>
-<td>@cols=1:主流語言</td>
-<td>@cols=1:主流語言</td>
+<td>支持接入語言</td>
+<td>主流語言</td>
+<td>主流語言</td>
 </tr>
 <tr>
-<td>@cols=1:策略讀取方式</td>
-<td>@cols=1:<span style="color:#ff0000" class="jop-noMdConv"><a title="https://www.openpolicyagent.org/docs/latest/management-bundles/#bundle-file-format" href="https://www.openpolicyagent.org/docs/latest/management-bundles/#bundle-file-format">bundle</a></span><br class="jop-noMdConv" /></td>
-<td>@cols=1:csv，數據庫等，主要看adapter的使用</td>
+<td>策略讀取方式</td>
+<td><span style="color:#ff0000" class="jop-noMdConv"><a title="https://www.openpolicyagent.org/docs/latest/management-bundles/#bundle-file-format" href="https://www.openpolicyagent.org/docs/latest/management-bundles/#bundle-file-format">bundle</a></span><br class="jop-noMdConv" /></td>
+<td>csv，數據庫等，主要看adapter的使用</td>
 </tr>
 <tr>
-<td>@cols=1:系統接入</td>
-<td>@cols=1:kubernetes，envoy，ceph，kafka等</td>
-<td>@cols=1:kubernetes，envoy</td>
+<td>系統接入</td>
+<td>kubernetes，envoy，ceph，kafka等</td>
+<td>kubernetes，envoy</td>
 </tr>
 <tr>
-<td>@cols=1:IDE支持</td>
-<td>@cols=1:支持IDEA和vsc</td>
-<td>@cols=1:支持IDEA和vsc</td>
+<td>IDE支持</td>
+<td>支持IDEA和vsc</td>
+<td>支持IDEA和vsc</td>
 </tr>
 <tr>
 <td>可維護性</td>
 <td>開源，golang編寫，6K stars，社羣活躍</td>
-<td>@cols=1:開源，golang編寫，11K stars，社羣活躍</td>
+<td>開源，golang編寫，11K stars，社羣活躍</td>
 </tr>
 <tr>
 <td>性能</td>
 <td></td>
-<td>@cols=1:<img alt="Snipaste_2021-12-28_18-36-35.png" /><br class="jop-noMdConv" /></td>
+<td><img src="/_resources/5bd1bd16e9dc441781f25dd211169b13.png" /><br class="jop-noMdConv" /></td>
 </tr>
 <tr>
 <td>控制顆粒度</td>
 <td>可根據需要定義</td>
-<td>@cols=1:可根據需要定義</td>
+<td>可根據需要定義</td>
 </tr>
 <tr>
 <td>易用性</td>
 <td>需要學習Rego語言，不過大概一個小時可以入門，上手快</td>
-<td>@cols=1:需要熟悉config配置語法，加上內置函數之類，一個小時入門，上手快</td>
+<td>需要熟悉config配置語法，加上內置函數之類，一個小時入門，上手快</td>
 </tr>
 <tr>
-<td>@cols=1:接入istio難度</td>
-<td>@cols=1:根據<a title="https://www.openpolicyagent.org/docs/latest/envoy-tutorial-istio/" href="https://www.openpolicyagent.org/docs/latest/envoy-tutorial-istio/">官方教程</a>，設置邊車，然後通過添加標籤的形式接入，架構如下<br class="jop-noMdConv" /><img alt="envoy-ext-authz-flow.png" />特點：<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">通過標籤可以方便接入</li><li class="jop-noMdConv">標籤下的pod有一個opa邊車，避免單點故障，並且高性能，有緩存</li><li class="jop-noMdConv">可以通過設置bundle服務動態加載模型和數據</li></ol></td>
-<td>@cols=1:官方<a title="https://github.com/casbin/envoy-authz" href="https://github.com/casbin/envoy-authz">例子</a>已經對接好Envoy的ext_authz，只需要修改裏面的讀取token和用戶信息的方式，就能直接替換掉原本PDP服務；<br class="jop-noMdConv" /><br class="jop-noMdConv" />另外，文檔中提到的請求頭也不需要處理，因爲新版RequestAuthentication可以傳遞token過去；<br class="jop-noMdConv" /><br class="jop-noMdConv" />另外例子沒有詳細說明可以怎麼接，可以參照opa的模型，也可以單獨一個PDP服務</td>
+<td>接入istio難度</td>
+<td>根據<a title="https://www.openpolicyagent.org/docs/latest/envoy-tutorial-istio/" href="https://www.openpolicyagent.org/docs/latest/envoy-tutorial-istio/">官方教程</a>，設置邊車，然後通過添加標籤的形式接入，架構如下<img src="/_resources/20c3b7f78454433a87fefeb7983a8f67.png" /><br class="jop-noMdConv" />特點：<br class="jop-noMdConv" /><br class="jop-noMdConv" /><ol class="jop-noMdConv"><li class="jop-noMdConv">通過標籤可以方便接入</li><li class="jop-noMdConv">標籤下的pod有一個opa邊車，避免單點故障，並且高性能，有緩存</li><li class="jop-noMdConv">可以通過設置bundle服務動態加載模型和數據</li></ol></td>
+<td>官方<a title="https://github.com/casbin/envoy-authz" href="https://github.com/casbin/envoy-authz">例子</a>已經對接好Envoy的ext_authz，只需要修改裏面的讀取token和用戶信息的方式，就能直接替換掉原本PDP服務；<br class="jop-noMdConv" /><br class="jop-noMdConv" />另外，文檔中提到的請求頭也不需要處理，因爲新版RequestAuthentication可以傳遞token過去；<br class="jop-noMdConv" /><br class="jop-noMdConv" />另外例子沒有詳細說明可以怎麼接，可以參照opa的模型，也可以單獨一個PDP服務</td>
 </tr>
 </tbody>
 </table>
@@ -838,7 +838,7 @@ s.<span class="hljs-title function_">on</span>(<span class="hljs-string">'error'
             <guid>514d544afb294f6aaf390efd3e085446</guid>
             <pubDate>Fri, 24 Mar 2023 15:36:17 GMT</pubDate>
             <content:encoded><![CDATA[<h2 id="工具鏈">工具鏈</h2>
-<p><img alt="devops-artikel-1-foto-1.jpeg" /></p>
+<p><img src="/_resources/87b234d2c7244b1e817cd3d70c32a5fe.png" /></p>
 <h2 id="plan">Plan</h2>
 <table>
 <thead>
