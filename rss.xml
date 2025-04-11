@@ -4,100 +4,9 @@
         <title></title>
         <link>undefined</link>
         <description>undefined</description>
-        <lastBuildDate>Wed, 09 Apr 2025 03:00:04 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 11 Apr 2025 12:46:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Joplin Pages Publisher</generator>
-        <item>
-            <title><![CDATA[容錯比性能重要10倍？！]]></title>
-            <link>https://reply2future.top/article/fault-tolerance-vs-performance</link>
-            <guid>efd14eb7957e4f82a8a4071768cef5f1</guid>
-            <pubDate>Sun, 02 Mar 2025 15:39:14 GMT</pubDate>
-            <content:encoded><![CDATA[<ul>
-<li>
-<h1 id="背景">背景</h1>
-<p>在我們這個追求效率和速度的時代，「性能」似乎成了一個至高無上的指標。更快的處理器、更高的網速、更短的反應時間——我們總是在追求以「最短路徑、最快速度」達成目標。然而，過度追求性能，有時會讓我們忽略另一個同樣重要甚至更關鍵的維度——「容錯」。</p>
-</li>
-<li>
-<h2 id="什麼是容錯什麼是性能">什麼是容錯？什麼是性能？</h2>
-<p>在深入探討之前，讓我們先釐清概念：</p>
-</li>
-<li>
-<p><strong>性能 (Performance)：</strong> 通常指系統在特定條件下完成任務的效率、速度或吞吐量。它追求的是最佳路徑、最快響應、最大化輸出。</p>
-</li>
-<li>
-<p><strong>容錯 (Fault Tolerance)：</strong> 指系統在面對錯誤、故障或異常情況時，仍能維持其基本功能或整體穩定性的能力。它強調的是「容許出錯」，是系統的韌性。更進一步，這個概念與「反脆弱」（Antifragility）相關——不僅能承受衝擊，甚至可能從錯誤和混亂中受益，變得更強大。</p>
-<p>標題或許有些誇張，但它引發了一個值得深思的問題：在許多情況下，系統的穩定性、可靠性、應對錯誤甚至從錯誤中獲益的能力，是否遠比單純追求極致性能更重要？</p>
-</li>
-<li>
-<h2 id="跨領域的觀察生活-工作-金融與技術">跨領域的觀察：生活、工作、金融與技術</h2>
-<p>讓我們從不同領域的實例來觀察性能與容錯的權衡。</p>
-</li>
-<li>
-<h3 id="生活中的容錯哲學">生活中的容錯哲學</h3>
-</li>
-<li>
-<p><strong>性價比的迷思：</strong> 購物時若只看重「價格低」（一種性能指標），可能買到質量差、不耐用的商品。一件容易損壞的廉價品，其「性能」再高（例如功能多），也無法彌補它缺乏「容錯」（耐用性）的缺陷。長遠來看，可靠耐用的商品往往更具價值。</p>
-</li>
-<li>
-<p><strong>人體的奇妙設計：</strong> 人體是容錯設計的典範。許多重要器官成雙成對（冗餘）；大腦有硬頭骨保護；脂肪組織不僅儲存能量，也提供物理緩衝。人體並非追求單一器官的極限性能，而是透過多層次的冗餘、保護和緩衝機制，確保整體的生存能力（高度容錯）。</p>
-</li>
-<li>
-<p><strong>開車的風險權衡：</strong> 提高車速（性能）能更快到達目的地，但過快的速度會壓縮反應時間，增加事故風險（缺乏容錯）。為了安全（容錯），我們需要犧牲部分「性能」（速度），換取更大的安全邊際。</p>
-</li>
-<li>
-<h3 id="工作中的容錯考量">工作中的容錯考量</h3>
-</li>
-<li>
-<p><strong>職業門檻與可替代性：</strong> 在職場中，「容錯」可以體現在職業的穩定性和抗風險能力上。一些職業具有較高的門檻（如需要特定執照、高學歷或多年經驗），這使得從業者不易被替代，相當於提高了個人的職業「容錯」能力。通常，這種低可替代性也與較高的薪酬（一種「性能」表現）相關。反之，門檻低、可替代性高的工作，其從業者的職業容錯性較低，更容易受到市場波動或技術變革的衝擊。<strong>例如，隨著人工智能（AI）技術的發展，越來越多原本由人類執行的重複性、流程化的任務，如基礎的文書處理、數據輸入、甚至部分客服工作，正逐漸被 AI 取代或輔助。這意味著高度依賴這些技能的崗位，其可替代性正在增加，從業者的職業容錯性隨之降低，面臨更大的轉型或提升技能的壓力。</strong></p>
-</li>
-<li>
-<p><strong>危險性與薪金的權衡：</strong> 某些工作本身具有較高的危險性（例如高空作業、消防員），這意味著從業者面臨較低的人身安全「容錯」水平。為了補償這種風險，這些崗位通常提供更高的薪金（更高的財務「性能」）。這是一種典型的權衡：個體接受較低的物理容錯性，以換取更高的經濟回報。選擇職業本身就是在個人的風險偏好（容錯需求）和期望回報（性能需求）之間尋找平衡點。</p>
-</li>
-<li>
-<h3 id="金融資產的風險控制">金融資產的風險控制</h3>
-<p>在金融投資領域，「容錯」——即風險控制——是核心考量。</p>
-</li>
-<li>
-<p><strong>定投與ETF：</strong> 定期定額投資透過「時間分散」平滑成本、降低擇時風險；ETF透過「範圍分散」將風險分攤到一籃子資產中。兩者都是典型的容錯策略，旨在提高投資組合抵禦市場波動的能力。</p>
-</li>
-<li>
-<p><strong>止盈止損單：</strong> 設定價格範圍來控制單筆交易的潛在虧損或鎖定利潤，是以犧牲部分潛在收益（性能）為代價，來確保風險可控（容錯）。</p>
-</li>
-<li>
-<h3 id="技術架構的取捨">技術架構的取捨</h3>
-<p>在技術領域，性能和容錯的權衡更是無處不在。</p>
-</li>
-<li>
-<p><strong>追求極致性能的代價：</strong> 去除緩存、校驗等「中間層」或許能提升理想狀況下的性能，但可能導致系統在異常流量或攻擊下變得脆弱，甚至如某些服務曾發生的長時間不可用。</p>
-</li>
-<li>
-<p><strong>擁抱容錯的穩健設計：</strong> 成熟的架構會引入緩存（Cache）、驗證碼（CAPTCHA）、負載均衡、服務降級、熔斷機制以及<strong>數據備份 (Data Backup)</strong> 等。<strong>數據備份</strong>是容錯的基石之一，確保在發生硬件故障、數據損壞、勒索軟件攻擊或其他災難時，能夠恢復數據，保障業務連續性。雖然維護備份需要額外的存儲和計算資源（犧牲部分性能和成本），但它對於防止毀滅性數據丟失至關重要。這些容錯機制雖然可能增加延遲或稍微影響用戶體驗（犧牲部分性能），但極大提高了系統的穩定性、可用性和抵禦風險的能力（增強容錯）。</p>
-</li>
-<li>
-<h2 id="核心理念反脆弱與權衡">核心理念：反脆弱與權衡</h2>
-<p>從以上例子中，我們可以提煉出幾個核心觀點：</p>
-</li>
-<li>
-<p><strong>反脆弱性：</strong> 真正的強韌系統不僅僅是「容錯」——即在壓力下保持不變——更應該追求「反脆弱」。如同人體免疫系統在接觸病原體後產生抗體變得更強，某些系統可以設計成從錯誤、壓力和波動中學習、適應並進化，變得更加穩健。</p>
-</li>
-<li>
-<p><strong>錯誤值得慶幸？：</strong> 從反脆弱的角度看，錯誤和失敗不完全是壞事。它們暴露了系統的弱點，提供了學習和改進的機會。一個從不犯錯的系統可能反而隱藏著巨大的脆弱性。擁抱可控的小錯誤，有助於構建更具韌性的長期系統。</p>
-</li>
-<li>
-<p><strong>一切皆是權衡 (Everything is a trade-off)：</strong> 性能和容錯往往處於一種相互制約的關係。追求極致的性能可能犧牲容錯性，而過度的容錯設計也可能拖累性能。不存在絕對的最優解。</p>
-</li>
-<li>
-<p><strong>設定作用域 (Define the Scope)：</strong> 如何在性能和容錯之間取得平衡，完全取決於具體的「作用域」或「上下文」。對於生命攸關的系統（如醫療、航空），容錯性是壓倒一切的；而對於某些實驗性或短週期項目，快速迭代和性能驗證可能更為重要。理解應用場景和風險承受能力，是做出正確權衡的關鍵。</p>
-</li>
-<li>
-<h2 id="結論情境決定容錯優先追求反脆弱">結論：情境決定，容錯優先，追求反脆弱</h2>
-<p>回到最初的問題：「容錯比性能重要10倍？！」這個說法提醒我們，<strong>一個無法穩定運行、頻繁出錯、甚至無法從錯誤中恢復的系統，即使擁有再高的峰值性能，其價值也大打折扣。</strong></p>
-<p>關鍵在於理解<strong>情境 (Context / Scope)</strong>。我們需要根據具體的應用場景、風險承受能力和長期目標，來決定性能與容錯的平衡點。然而，在大多數需要長期穩定運行的系統中，<strong>優先確保基本的容錯能力，再逐步優化性能，通常是更明智的策略。</strong> 更進一步，我們應該思考如何設計系統，使其不僅能容忍錯誤，更能從中學習和受益，達到<strong>反脆弱</strong>的境界。</p>
-<p>下一次當我們評估一個系統、一項策略或一個決策時，除了問「它有多快？效率多高？」之外，更要問：「它足夠穩健嗎？它能應對意外嗎？它能從錯誤中變得更好嗎？」或許，真正決定長期成敗的，往往不是那轉瞬即逝的峰值性能，而是那深植於設計之中的、應對不確定性的智慧——容錯與反脆弱的能力。</p>
-</li>
-</ul>
-]]></content:encoded>
-        </item>
         <item>
             <title><![CDATA[How to Create a Bot for SimpleX-Chat with TypeScript]]></title>
             <link>https://reply2future.top/article/how-to-create-a-bot-for-simplex-chat-with-typescript</link>
@@ -511,6 +420,98 @@
 <h2 id="參考">參考</h2>
 <p>1. <a title="https://github.com/ffffffff0x/Digital-Privacy" href="https://github.com/ffffffff0x/Digital-Privacy">Digital-Privacy</a><br />
 2. <a title="https://github.com/kallydev/privacy.kallydev.com/blob/main/posts/index.mdx" href="https://github.com/kallydev/privacy.kallydev.com/blob/main/posts/index.mdx">如何在網絡中保護隱私</a></p>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Logger的總結]]></title>
+            <link>https://reply2future.top/article/logger</link>
+            <guid>3944b2f1aa194397a8c06edfff8c2b57</guid>
+            <pubDate>Fri, 24 Mar 2023 15:57:03 GMT</pubDate>
+            <content:encoded><![CDATA[<h2 id="背景">背景</h2>
+<p><span style="color:#172b4d" class="jop-noMdConv">日誌重要性不言而喻：</span></p>
+<ol>
+<li>快速定位和重現問題</li>
+<li>發現服務瓶頸(服務耗時，當然這一部分也可以通過其他無入侵式監控方式實現)</li>
+</ol>
+<h2 id="日誌分類">日誌分類</h2>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>說明</th>
+<th>@cols=1:一般面向人員</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>診斷日誌</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">函數調用入參和出參</li><li class="jop-noMdConv">外部服務調用</li><li class="jop-noMdConv">捕獲異常信息</li><li class="jop-noMdConv">關鍵中間變量變化</li><li class="jop-noMdConv">加載配置</li><li class="jop-noMdConv">操作定時服務</li></ol></td>
+<td>@cols=1:服務開發者</td>
+</tr>
+<tr>
+<td>統計日誌</td>
+<td><ol class="jop-noMdConv"><li class="jop-noMdConv">請求耗時</li><li class="jop-noMdConv">請求頭標識信息</li><li class="jop-noMdConv">請求時間</li><li class="jop-noMdConv">資源信息(cpu和memory佔用)</li></ol></td>
+<td>@cols=1:運維</td>
+</tr>
+</tbody>
+</table>
+<h2 id="日誌內容">日誌內容</h2>
+<h3 id="原則">原則</h3>
+<p>目前只針對<code>診斷日誌</code>做說明</p>
+<table>
+<thead>
+<tr>
+<th>原則</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>開始輸入參數</td>
+<td>方便重現問題</td>
+</tr>
+<tr>
+<td>結束輸出參數</td>
+<td>判斷是否符合預期</td>
+</tr>
+<tr>
+<td>中間關鍵變量變化</td>
+<td>儘量保證一個函數一個職責，減少中間變量</td>
+</tr>
+<tr>
+<td>不可達代碼打印記錄</td>
+<td>方便查找bug</td>
+</tr>
+<tr>
+<td>避免打印日誌引入異常</td>
+<td>比如: null引用，一般框架會自帶處理</td>
+</tr>
+<tr>
+<td>logging</td>
+<td>對於不需要輸出的日誌(DEBUG)所做的操作，避免性能損耗，比如說字符串拼接</td>
+</tr>
+<tr>
+<td>設置【<a title="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578#:~:text=%E6%97%A5%E5%BF%97%E7%9A%84%E7%BA%A7%E5%88%AB,%E6%97%A5%E5%BF%97%E6%9D%A5%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98" href="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578#:~:text=%E6%97%A5%E5%BF%97%E7%9A%84%E7%BA%A7%E5%88%AB,%E6%97%A5%E5%BF%97%E6%9D%A5%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98">日誌等級</a>】</td>
+<td>生產環境關閉debug日誌，避免浪費磁盤和大量日誌干擾問題的定位</td>
+</tr>
+<tr>
+<td>不要打印敏感信息</td>
+<td>用戶密碼，key之類的</td>
+</tr>
+<tr>
+<td>打印捕獲異常日誌</td>
+<td>方便知道異常信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="格式">格式</h3>
+<p><code>【時間】,【 等級】, 【traceId/clusterId】,【module/function】 【action】, 【changed value/arguments】</code> (5W1H)</p>
+<h2 id="參考">參考</h2>
+<ol>
+<li><a title="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578" href="https://wiki.dm-ai.cn/pages/viewpage.action?pageId=208963578">3.服務日誌規範文檔</a>  !!! 強力推薦 !!!</li>
+<li><a title="https://www.cntofu.com/book/78/p3c-gitbook/%E5%BC%82%E5%B8%B8%E6%97%A5%E5%BF%97/%E6%97%A5%E5%BF%97%E8%A7%84%E7%BA%A6.md" href="https://www.cntofu.com/book/78/p3c-gitbook/%E5%BC%82%E5%B8%B8%E6%97%A5%E5%BF%97/%E6%97%A5%E5%BF%97%E8%A7%84%E7%BA%A6.md">阿里巴巴Java開發手冊-日誌規約</a></li>
+<li><a title="https://www.scalyr.com/blog/the-10-commandments-of-logging/" href="https://www.scalyr.com/blog/the-10-commandments-of-logging/">LOGGING BEST PRACTICES: THE 13 YOU SHOULD KNOW</a></li>
+</ol>
 ]]></content:encoded>
         </item>
     </channel>
